@@ -1,11 +1,6 @@
 # To build and deploy to Cloud Run, run from this directory:
 # $ gcloud builds submit app --config=cloudbuild.yaml
 steps:
-  # Install dependencies
-  #- name: python:3.8-alpine
-  #  entrypoint: pip
-  #  args: ["install", "-r", "requirements.txt", "--user"]
-  # Build & tag the container image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
   # Run unit tests
