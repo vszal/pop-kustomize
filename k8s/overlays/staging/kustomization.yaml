@@ -4,4 +4,4 @@ bases:
 - ../../base
 patchesStrategicMerge:
 - hpa.yaml
-- staging-deployment.yaml
+- deployment.yaml

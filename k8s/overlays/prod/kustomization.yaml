@@ -4,4 +4,4 @@ bases:
 - ../../base
 patchesStrategicMerge:
 - hpa.yaml
-- prod-deployment.yaml
+- deployment.yaml
