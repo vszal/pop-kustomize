@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pop-stats
+spec:
+  replicas: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    spec:
+      containers:
+          - name: pop-stats
+            env:
+              - name: SITE_NAME
+                value: "Population Stats Prod"

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pop-stats
+  labels:
+    app: pop-stats
+spec:
+  selector:
+    matchLabels:
+      app: pop-stats
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pop-stats
+    spec:
+      containers:
+      - name: pop-stats
+        image: pop-stats:latest
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        env:
+          - name: SITE_NAME
+            value: "Population Stats Dev"
+          - name: DEV_EXT_IP
+            value: "97.113.223.41"

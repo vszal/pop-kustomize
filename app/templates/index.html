@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+    <div class="alert alert-success">Population estimates for <strong>{{county}}</strong></div>
+
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Population</th>
+        <th>Density</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ population }}</td>
+        <td>{{ density }}</td>  
+      </tr>
+  </tbody>
+  </table>
+
+<div style="height: 600px" id="mapid"></div>
+{% endblock %}
