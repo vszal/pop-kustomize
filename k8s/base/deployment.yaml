@@ -22,6 +22,4 @@ spec:
           protocol: TCP
         env:
           - name: SITE_NAME
-            value: "Population Stats Dev"
-          - name: DEV_EXT_IP
-            value: "97.113.223.41"
+            value: "Site Name"
