@@ -17,8 +17,4 @@ ENV PYTHONPATH=/usr/local/lib/python3.7/site-packages
 ENV PORT 8080
 ENV GUNICORN_CMD_ARGS="--workers 2 --threads 2 -b 0.0.0.0:8080 --chdir /home/worker"
 # Run the web service on container startup.
-#CMD exec gunicorn app:app --workers 2 --threads 2 -b 0.0.0.0:8080 --reload
 CMD ["gunicorn",  "app:app"]
-
-# to build and run this Dockerfile:
-# docker build -t covidweb . && docker run --rm -p 8080:8080 -e PORT=8080 covidweb
