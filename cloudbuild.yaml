@@ -1,17 +1,28 @@
 # To build and deploy to Cloud Run, run from this directory:
 # $ gcloud builds submit app --config=cloudbuild.yaml
 steps:
-# Install dependencies
-- name: python:3.8-alpine
-  entrypoint: pip
-  args: ["install", "-r", "requirements.txt", "--user"]
-# Run unit tests
-- name: python:3.8-alpine
-  entrypoint: python
-  args: ["unit_tests.py"]
-# Build the container image
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '.', '-t', 'gcr.io/$PROJECT_ID/pop-stats', '-f', 'Dockerfile']
-# Push the container image to Container Registry
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/pop-stats']
+  # Install dependencies
+  #- name: python:3.8-alpine
+  #  entrypoint: pip
+  #  args: ["install", "-r", "requirements.txt", "--user"]
+  # Build & tag the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
+  # Run unit tests
+  - name: us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats
+    entrypoint: python
+    args: ["unit_tests.py"]
+  # Push the container image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}']
+  # Create release in Google Cloud Deploy
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    args: 
+      - '-c'
+      - >
+        gcloud beta deploy releases create rel-${SHORT_SHA}
+        --delivery-pipeline=pop-stats-pipeline --region=us-central1
+        --source=. --annotations="commitId=${REVISION_ID}" 
+        --images=image1=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA} 
+    dir: app
+    entrypoint: bash
