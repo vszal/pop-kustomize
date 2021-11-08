@@ -2,7 +2,7 @@
 # $ gcloud builds submit app --config=cloudbuild.yaml
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
+    args: ['build', 'app', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
   # Run unit tests
   - name: us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats
     entrypoint: python
