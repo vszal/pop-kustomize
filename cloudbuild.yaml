@@ -1,6 +1,7 @@
-# To build and deploy to Cloud Run, run from this directory:
-# $ gcloud builds submit app --config=cloudbuild.yaml
+# Overview: build and create a release via Google Cloud Deploy for GKE
+# NOTE: currently requires SCM triggering due to dependency on the COMMIT_SHA variable
 steps:
+  # Build and tag using commit sha
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
     dir: 'app'
