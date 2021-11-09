@@ -1,20 +1,5 @@
-# Purpose
-This repo demostrates Kubernetes development and deployment with Skaffold and Google Cloud devops tools Google Cloud Deploy, Cloud Build, and Artifact Registry. The example app is based on a simple Python Flask example app named "Population Stats" and uses Kustomize overlays for manifest generation. 
-
-# Try it in Cloud Shell
-Google Cloud Shell provides a free environment in which to play with these files:
-
-[![Open in cloud shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/vszal/pop-kustomize&page=editor&open_in_editor=skaffold.yaml)
-
-# K8s / Kustomize configuration
-
-TODO - directory structure, clarify this section
-
-`k8s/base` - base config files
-`k8s/overlays` - overlays including dev, staging and prod. "dev" overlay maps to default Skaffold deploy.
-
 # Google Cloud CI/CD End-to-End Demo
-The purpose of this repository is to showcase Google Cloud DevOps products in an end-to-end CI/CD workflow. Google Cloud Deploy, Cloud Build, and Artifact Registry are featured.
+This repo demostrates Kubernetes development and deployment with Skaffold and Google Cloud devops tools Google Cloud Deploy, Cloud Build, and Artifact Registry. The example app is based on a simple Python Flask example app named "Population Stats" and uses Kustomize overlays for manifest generation. 
 
 ## Create a repo
 This demo relies on you making git check-ins to simulate a developer workflow. Fork this repo, or otherwise copy it into your own Github repo.
@@ -88,13 +73,13 @@ To deploy to prod, set your kube context to the proper cluster and run:
 
 `skaffold run --profile prod`
 
-# Population stats
+## Try it in Cloud Shell
+Google Cloud Shell provides a free environment in which to play with these files:
+
+[![Open in cloud shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/vszal/pop-kustomize&page=editor&open_in_editor=skaffold.yaml)
+
+# About the Sample app - Population stats
 
 Simple web app that pulls population data based on address queries. 
 
 Population data gathered from the U.S. Census Bureau [Population Estimate API](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html).
-
-# Build with Google Cloud Build
-Serverless CI / build:
-
-`gcloud builds submit app --config=cloudbuild.yaml`

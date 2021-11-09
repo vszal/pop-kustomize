@@ -18,15 +18,9 @@ steps:
     args: 
       [
         "beta", "deploy", "releases", "create", "rel-${SHORT_SHA}",
-        "--delivery-pipeline","pop-stats-pipeline",
+        "--delivery-pipeline", "pop-stats-pipeline",
         "--region", "us-central1",
         "--annotations", "commitId=${REVISION_ID}",
         "--images", "image1=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}"
       ]
-    #  - '-c'
-    #  - >
-    #    gcloud beta deploy releases create rel-${SHORT_SHA}
-    #    --delivery-pipeline=pop-stats-pipeline --region=us-central1
-    #    --source=. --annotations="commitId=${REVISION_ID}" 
-    #    --images=image1=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA} 
     
