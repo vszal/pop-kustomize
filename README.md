@@ -51,25 +51,20 @@ To remove the three running GKE clusters, edit `bootstrap/gke-cluster-delete.sh`
 1. Replace `project-id-here` with your project-id on line 3.
 2. Run `. .bootstrap/gke-cluster-delete.sh`
 
-# Building, Deploying & Running manually
-While there are several ways to build and run the app in this repo, the intention is to demonstrate Skaffold and Kustomize in local development scenarios ("dev"), as well as deployments to two additional environments: "staging" and "prod". 
-
-## Local dev
+# Local dev
 To run this app locally, start minikube or some other local k8s framework and from the root of the repo run:
 
 `skaffold dev`
 
-This profile uses the "dev" customer overlay.
+The default skaffold settings use the "dev" customer overlay. 
 
 Once running, you can make file changes and observe the rebuilding of the container and redeployment.
 
-## Staging 
-To deploy to staging, set your kube context to the proper cluster and run:
+To test the staging overlays/profile:
 
 `skaffold run --profile staging`
 
-## Prod
-To deploy to prod, set your kube context to the proper cluster and run:
+To test the staging overlays/profile:
 
 `skaffold run --profile prod`
 
