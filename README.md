@@ -26,7 +26,7 @@ If you have/want different cluster names update cluster definitions in the gke-c
 
 To create the clusters, edit `bootstrap/gke-cluster-init.sh`:
 1. Replace `project-id-here` with your project-id on line 3.
-2. Run `. .bootstrap/gke-cluster-init.sh`
+2. Run `. ./bootstrap/gke-cluster-init.sh`
 
 ## IAM and service account setup
 You must give Cloud Build explicit permission to trigger a Cloud Deploy release.
@@ -49,7 +49,7 @@ The demo is very simple at this stage.
 ## Tear down
 To remove the three running GKE clusters, edit `bootstrap/gke-cluster-delete.sh`:
 1. Replace `project-id-here` with your project-id on line 3.
-2. Run `. .bootstrap/gke-cluster-delete.sh`
+2. Run `. ./bootstrap/gke-cluster-delete.sh`
 
 # Local dev
 To run this app locally, start minikube or some other local k8s framework and from the root of the repo run:
