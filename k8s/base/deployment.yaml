@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: pop-stats
-        image: pop-stats:latest
+#        image: pop-stats:latest
         ports:
         - containerPort: 8080
           protocol: TCP
