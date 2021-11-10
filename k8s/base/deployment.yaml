@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: pop-stats
-#        image: pop-stats:latest
+        image: us-central1-docker.pkg.dev/vsz-cd-preview/pop-stats/pop-stats
         ports:
         - containerPort: 8080
           protocol: TCP
