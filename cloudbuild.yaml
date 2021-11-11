@@ -22,6 +22,6 @@ steps:
         "--delivery-pipeline", "pop-stats-pipeline",
         "--region", "us-central1",
         "--annotations", "commitId=${REVISION_ID}",
-        "--images", "image1=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}"
+        "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}"
       ]
     
