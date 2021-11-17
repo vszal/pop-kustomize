@@ -23,3 +23,5 @@ spec:
         env:
           - name: SITE_NAME
             value: "Site Name"
+          - name: DEV_EXT_IP
+            value: "8.8.8.8"
