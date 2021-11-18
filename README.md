@@ -79,6 +79,6 @@ Google Cloud Shell provides a free environment in which to play with these files
 
 # About the Sample app - Population stats
 
-Simple web app that pulls population data based on address queries. 
+Simple web app that pulls population data based on U.S. address queries. Note, other countries are currently not supported.
 
-Population data gathered from the U.S. Census Bureau [Population Estimate API](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html).
+Population data gathered from the U.S. Census Bureau [Population Estimate API](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html). 
