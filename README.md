@@ -9,7 +9,7 @@ This demo relies on you making git check-ins to simulate a developer workflow. F
 1. In `clouddeploy.yaml`, replace `project-id-here` with your actual project for each of the three targets.
 
 ## Bootstrap Google Cloud demo
-Bootstrap scripts are in the `bootstrap` folder.
+Bootstrap scripts are in the `bootstrap` folder. Here
 
 The `init.sh` script is provided to bootstrap much of the configuration setup. You'll still need to do some steps manually after this script runs though.
 
