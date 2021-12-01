@@ -6,7 +6,7 @@ steps:
     args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
     dir: 'app'
   # Run unit tests
-  - name: us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats
+  - name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}'
     entrypoint: python
     args: ["unit_tests.py"]
     dir: 'app'
