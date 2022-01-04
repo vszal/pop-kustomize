@@ -17,9 +17,9 @@ The `init.sh` script is provided to bootstrap much of the configuration setup. Y
 
 1. In `init.sh`, replace project-id-here with your Google Cloud project-id on line 3.
 2. Run `. ./bootstrap/init.sh`
-3. Verify that the Google Cloud Deploy pipeline was created in [Google Cloud Deploy UI](https://console.google.com/deploy/delivery-pipelines)
+3. Verify that the Google Cloud Deploy pipeline was created in [Google Cloud Deploy UI](https:///console.cloud.google.com/deploy/delivery-pipelines)
 4. Setup a Cloud Build trigger for your repo
-  * Navigate to [Cloud Build triggers page](https://console.google.com/cloud-build/triggers)
+  * Navigate to [Cloud Build triggers page](https://console.cloud.google.com/cloud-build/triggers)
   * Follow the [docs](https://cloud.google.com/build/docs/automating-builds/build-repos-from-github) and create a Github App connected repo and trigger.
 
 ## Create GKE clusters
