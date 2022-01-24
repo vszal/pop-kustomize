@@ -11,6 +11,6 @@ cloudresourcemanager.googleapis.com
 gcloud artifacts repositories create pop-stats --location=us-central1 \
 --repository-format=docker
 # creates the Google Cloud Deploy pipeline
-gcloud beta deploy apply --file clouddeploy.yaml \
+gcloud deploy apply --file clouddeploy.yaml \
 --region=us-central1 --project=$PROJECT_ID
 echo "init done. To create clusters, run: ./gke-cluster-init.sh"
