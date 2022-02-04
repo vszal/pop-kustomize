@@ -18,7 +18,7 @@ steps:
     entrypoint: gcloud
     args: 
       [
-        "beta", "deploy", "releases", "create", "rel-${SHORT_SHA}",
+        "deploy", "releases", "create", "rel-${SHORT_SHA}",
         "--delivery-pipeline", "pop-stats-pipeline",
         "--region", "us-central1",
         "--annotations", "commitId=${REVISION_ID}",
