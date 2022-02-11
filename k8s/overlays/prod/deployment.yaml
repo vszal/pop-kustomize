@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: pop-stats
 spec:
-  replicas: 10
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
