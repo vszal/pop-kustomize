@@ -3,6 +3,7 @@
 .gitignore
 *_local.*
 .vscode/*
+anthos/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
