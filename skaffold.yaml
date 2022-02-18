@@ -21,6 +21,11 @@ portForward:
   port: 8080 
   localPort: 8080
 profiles:
+  - name: test
+    deploy:
+      kustomize:
+        paths: 
+          - k8s/overlays/dev
   - name: staging
     deploy:
       kustomize:
