@@ -7,8 +7,6 @@ description: pop-stats application delivery pipeline
 serialPipeline:
  stages:
  - targetId: test
-   profiles:
-   - test
  - targetId: staging
    profiles:
    - staging
