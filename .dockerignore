@@ -1,0 +1,9 @@
+.git
+.cache
+.gitignore
+*-workspace
+*.md
+__pycache__
+.vscode
+.DS_Store
+.gcloudingore
