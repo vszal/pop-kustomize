@@ -7,6 +7,12 @@ spec:
     spec:
       containers:
           - name: pop-stats
+            livenessProbe:
+              httpGet:
+                path: /h
+                port: 8080
+              initialDelaySeconds: 30
+              periodSeconds: 15
             env:
               - name: SITE_NAME
                 value: "Population Stats Staging"
