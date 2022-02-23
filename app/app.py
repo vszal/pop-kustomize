@@ -56,6 +56,11 @@ def address_query():
     #return f'json= {testing}'
     #return f'lat = {lat}, lng = {lng}'
 
+@app.route('/h', methods=['GET'])
+def health_check():
+    site_name = os.environ.get('SITE_NAME')
+    return render_template('error.html', site_name=site_name, error_status=f"I'm up")
+
 def get_ip():
     # GCP Cloud Run needs X-Forwarded_For
     ip_address = request.headers.get('X-Forwarded-For', request.remote_addr) 
