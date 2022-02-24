@@ -9,4 +9,4 @@ spec:
       - name: pop-stats
         env:
           - name: SITE_NAME
-            value: "Population Stats Dev"
+            value: "Population Stats Test"
