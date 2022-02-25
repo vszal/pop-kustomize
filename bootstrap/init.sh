@@ -7,6 +7,16 @@ gcloud config set project $PROJECT_ID
 gcloud services enable container.googleapis.com cloudbuild.googleapis.com \
 artifactregistry.googleapis.com clouddeploy.googleapis.com \
 cloudresourcemanager.googleapis.com
+# add the clouddeploy.jobRunner role to your compute service account
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member=serviceAccount:$(gcloud projects describe $PROJECT_ID \
+    --format="value(projectNumber)")-compute@developer.gserviceaccount.com \
+    --role="roles/clouddeploy.jobRunner"
+# add the Kubernetes developer permission:
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member=serviceAccount:$(gcloud projects describe $PROJECT_ID \
+    --format="value(projectNumber)")-compute@developer.gserviceaccount.com \
+    --role="roles/container.developer"
 # creates the Artifact Registry repo
 gcloud artifacts repositories create pop-stats --location=us-central1 \
 --repository-format=docker
