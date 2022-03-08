@@ -15,10 +15,9 @@ COPY --from=build-venv /opt/venv /opt/venv
 COPY . /home/worker
 # gunicorn needs this path
 ENV PYTHONPATH=/opt/venv/lib/python3.9/site-packages
-#WORKDIR /opt/venv/bin
+WORKDIR /opt/venv/bin
 # Service must listen to $PORT environment variable.
-# This default value facilitates local development.
 ENV PORT 8080
 ENV GUNICORN_CMD_ARGS="--workers 2 --threads 2 -b 0.0.0.0:8080 --chdir /home/worker"
 # Run the web service on container startup.
-CMD ["/opt/venv/bin/gunicorn",  "app:app"]
+CMD ["gunicorn",  "app:app"]
