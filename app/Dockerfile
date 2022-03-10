@@ -9,15 +9,15 @@ FROM build AS build-venv
 COPY requirements.txt /requirements.txt
 RUN /opt/venv/bin/pip install --disable-pip-version-check -r /requirements.txt
 
-# Copy the virtualenv into a distroless image
-FROM gcr.io/distroless/python3
+# Copy the virtualenv into a distroless image (use :debug-nonroot for tools)
+FROM gcr.io/distroless/python3:nonroot
 COPY --from=build-venv /opt/venv /opt/venv
-COPY . /home/worker
+COPY --chown=nonroot:nonroot . /home/nonroot
 # gunicorn needs this path
 ENV PYTHONPATH=/opt/venv/lib/python3.9/site-packages
 WORKDIR /opt/venv/bin
 # Service must listen to $PORT environment variable.
 ENV PORT 8080
-ENV GUNICORN_CMD_ARGS="--workers 2 --threads 2 -b 0.0.0.0:8080 --chdir /home/worker"
+ENV GUNICORN_CMD_ARGS="--workers 2 --threads 2 -b 0.0.0.0:8080 --chdir /home/nonroot"
 # Run the web service on container startup.
 CMD ["gunicorn",  "app:app"]
