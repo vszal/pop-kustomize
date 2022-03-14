@@ -12,7 +12,7 @@ spec:
                 path: /h
                 port: 8080
               initialDelaySeconds: 30
-              periodSeconds: 15
+              periodSeconds: 16
             env:
               - name: SITE_NAME
                 value: "Population Stats Staging"
