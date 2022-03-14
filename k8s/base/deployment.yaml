@@ -17,6 +17,10 @@ spec:
       containers:
       - name: pop-stats
         image: pop-stats
+        securityContext:
+          runAsNonRoot: true
+          capabilities:
+            drop: ["ALL"]
         ports:
         - containerPort: 8080
           protocol: TCP
