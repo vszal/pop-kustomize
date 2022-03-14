@@ -5,6 +5,13 @@ metadata:
   labels:
     env: staging
 spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 15 
   template:
     spec:
       containers:
@@ -14,7 +21,7 @@ spec:
                 path: /h
                 port: 8080
               initialDelaySeconds: 30
-              periodSeconds: 16
+              periodSeconds: 15
             env:
               - name: SITE_NAME
                 value: "Population Stats Staging"
