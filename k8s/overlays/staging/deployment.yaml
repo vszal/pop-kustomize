@@ -6,12 +6,7 @@ metadata:
     env: staging
 spec:
   replicas: 3
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-  minReadySeconds: 15 
+  minReadySeconds: 15
   template:
     spec:
       containers:
