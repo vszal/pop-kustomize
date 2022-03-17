@@ -37,3 +37,7 @@ spec:
         env:
           - name: DEV_EXT_IP
             value: "8.8.8.8"
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
