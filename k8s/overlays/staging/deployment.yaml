@@ -6,7 +6,6 @@ metadata:
     env: staging
 spec:
   replicas: 3
-  minReadySeconds: 15
   template:
     spec:
       containers:

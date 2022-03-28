@@ -2,3 +2,4 @@
 requests>=2.25.0
 flask>=1.1.2
 gunicorn>=20.0.4
+cpu-load-generator>=1.2.0

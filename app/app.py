@@ -57,6 +57,12 @@ def address_query():
     #return f'json= {testing}'
     #return f'lat = {lat}, lng = {lng}'
 
+@app.route('/load', methods=['GET'])
+def load_all_cpus():
+    from cpu_load_generator import load_all_cores
+    load_all_cores(duration_s=30, target_load=0.9)  # generates load on all cores
+    return "Load test done"
+
 @app.route('/h', methods=['GET'])
 def health_check():
     site_name = os.environ.get('SITE_NAME')
