@@ -43,7 +43,19 @@ Run the initialization script:
 Verify that the Google Cloud Deploy pipeline was created in the 
 [Google Cloud Deploy UI](https://console.cloud.google.com/deploy/delivery-pipelines)
 
+## Configure your Github.com repo
+
+If you have not fork this repo yet, please do so now:
+[Fork this repo on Github](https://github.com/vszal/pop-kustomize/fork)
+
+To keep file changes you make in Cloud Shell in sync with your repo, you can check these file changes into your new Github repo by following these [docs](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github). Note that the Github CLI is available in Cloud Shell.
+
+```bash
+gh --version
+```
+
 ## Setup a Cloud Build trigger for your repo
+Now that your Github repo is setup, configure Cloud Build to run each time a change is pushed to the main branch. To do this, add a Trigger in Cloud Build:
   * Navigate to [Cloud Build triggers page](https://console.cloud.google.com/cloud-build/triggers)
   * Follow the [docs](https://cloud.google.com/build/docs/automating-builds/build-repos-from-github) and create a Github App connected repo and trigger.
 
@@ -73,15 +85,17 @@ You must give Cloud Build explicit permission to trigger a Google Cloud Deploy r
   * Cloud Deploy Releaser
   * Service Account User
 
-## Demo
+
+## Demo Overview
 The demo flow outlines a typical developer pathway, submitting a change to a Git repo which then triggers a CI/CD process:
-1. User commits a change the main branch of the repo
-2. Cloud Build is automatically triggered, which:
+1. Push a change the main branch of your forked repo. You can make any change such as a trivial change to the README.md file.
+2. A Cloud Build job is automatically triggered, which:
   * builds and pushes impages to Artifact Registry
   * creates a Google Cloud Deploy release in the pipeline
-3. User then navigates to Google Cloud Deploy UI and shows promotion events:
+3. You can then navigate to Google Cloud Deploy UI and shows promotion events:
   * test cluster to staging clusters
   * staging cluster to product cluster, with approval gate
+
 
 ## Tear down
 
@@ -90,7 +104,7 @@ To remove the three running GKE clusters, run:
 . ./bootstrap/gke-cluster-delete.sh
 ```
 
-## Local dev
+## Local dev (optional)
 
 To run this app locally, start minikube:
 ```bash 

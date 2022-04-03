@@ -12,18 +12,20 @@ This repo demostrates Kubernetes CI/CD with Google Cloud devops tools Google Clo
 ![Google Cloud E2E DevOps Architecture Diagram (1)](https://user-images.githubusercontent.com/76225123/145627874-86971a34-768b-4fc0-9e96-d7a769961321.png)
 
 ## Fork this repo
-This demo relies on you making git check-ins to simulate a developer workflow. Fork this repo, or otherwise copy it into your own Github repo. Note, currently this demo only works if you initiate the workflow via Git check-in.
+This demo relies on you making git check-ins to simulate a developer workflow. So you'll need your own copy of these files in your own Github.com repo.
 
-If you've already done that, you can start the setup tutorial.
+[Fork this repo on Github](https://github.com/vszal/pop-kustomize/fork)
+
+If you've already done that, you can start the setup tutorial below.
 
 ## Setup tutorial
-The following tutorial walks you through all the setup needed to configure Google Cloud components needed to run this demo. Clicking this button provisions a Cloud Shell Editor and launches an interactive tutorial which steps you through the process. Google Cloud account and project required.
+The following tutorial walks you through all the setup needed to configure Google Cloud services needed to run this demo. Clicking this button provisions a Cloud Shell Editor and launches an interactive tutorial which steps you through the process. Google Cloud account and project required.
 
 [![Start tutorial in cloud shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/open?git_repo=https://github.com/vszal/pop-kustomize&cloudshell_workspace=.&cloudshell_tutorial=tutorial.md)
 
 If you don't want to run the tutorial in Cloud Shell, you can view the md file [here](https://github.com/vszal/pop-kustomize/blob/main/tutorial.md).
 
-# About the Sample app - Population stats
+## About the Sample app - Population stats
 
 Simple web app that pulls population data based on U.S. address queries. Note, other countries are currently not supported.
 
