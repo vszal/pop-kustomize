@@ -25,9 +25,13 @@ export PROJECT_ID=<walkthrough-project-id/>
 ```
 
 ### Enable needed APIs and Create Google Cloud Deploy pipeline
-The <walkthrough-editor-open-file filePath="bootstrap/init.sh">bootstrap/init.sh
-</walkthrough-editor-open-file> script enables your APIs, customizes your <walkthrough-editor-open-file filePath="clouddeploy.yaml">clouddeploy.yaml
-</walkthrough-editor-open-file> and creates a Cloud Deploy pipeline for you. You'll still need to do some steps manually after these scripts run, though.
+The 
+<walkthrough-editor-open-file filePath="bootstrap/init.sh">bootstrap/init.sh</walkthrough-editor-open-file>
+script enables your APIs, customizes your 
+<walkthrough-editor-open-file filePath="clouddeploy.yaml">
+clouddeploy.yaml
+</walkthrough-editor-open-file> 
+and creates a Cloud Deploy pipeline for you. You'll still need to do some steps manually after these scripts run, though.
 
 Run the initialization script:
 ```bash
@@ -36,7 +40,8 @@ Run the initialization script:
 
 ### Check out your Google Cloud Deploy Pipeline
 
-Verify that the Google Cloud Deploy pipeline was created in [Google Cloud Deploy UI](https:///console.cloud.google.com/deploy/delivery-pipelines)
+Verify that the Google Cloud Deploy pipeline was created in the 
+[Google Cloud Deploy UI](https://console.cloud.google.com/deploy/delivery-pipelines)
 
 ## Setup a Cloud Build trigger for your repo
   * Navigate to [Cloud Build triggers page](https://console.cloud.google.com/cloud-build/triggers)
@@ -51,6 +56,7 @@ You'll need GKE clusters to deploy to. The Google Cloud Deploy pipeline in this 
 If you have/want different cluster names update cluster definitions in:
 * <walkthrough-editor-select-regex filePath="bootstrap/gke-cluster-init.sh" regex="cluster">bootstrap/gke-cluster-init.sh</walkthrough-editor-select-regex>
 * <walkthrough-editor-select-regex filePath="clouddeploy.yaml" regex="cluster">clouddeploy.yaml</walkthrough-editor-select-regex>
+* <walkthrough-editor-select-regex filePath="bootstrap/gke-cluster-delete.sh" regex="cluster">bootstrap/gke-cluster-delete.sh</walkthrough-editor-select-regex>
 
 
 ### Create the three GKE Autopilot clusters
@@ -62,7 +68,7 @@ If you have/want different cluster names update cluster definitions in:
 ## IAM and service account setup
 You must give Cloud Build explicit permission to trigger a Google Cloud Deploy release.
 1. Read the [docs](https://cloud.google.com/deploy/docs/integrating)
-2. Navigate to IAM and locate your Cloud Build service account
+2. Navigate to [IAM](https://console.cloud.google.com/iam-admin/iam) and locate your Cloud Build service account
 3. Add these two roles
   * Cloud Deploy Releaser
   * Service Account User
