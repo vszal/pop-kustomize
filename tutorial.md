@@ -85,6 +85,9 @@ You must give Cloud Build explicit permission to trigger a Google Cloud Deploy r
 
 
 ## Demo Overview
+
+[![Demo flow](https://user-images.githubusercontent.com/76225123/145627874-86971a34-768b-4fc0-9e96-d7a769961321.png)](https://user-images.githubusercontent.com/76225123/145627874-86971a34-768b-4fc0-9e96-d7a769961321.png)
+
 The demo flow outlines a typical developer pathway, submitting a change to a Git repo which then triggers a CI/CD process:
 1. Push a change the main branch of your forked repo. You can make any change such as a trivial change to the README.md file.
 2. A Cloud Build job is automatically triggered, using the <walkthrough-editor-open-file filePath="cloudbuild.yaml">
