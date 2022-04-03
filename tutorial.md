@@ -46,13 +46,11 @@ Verify that the Google Cloud Deploy pipeline was created in the
 ## Configure your Github.com repo
 
 If you have not fork this repo yet, please do so now:
+
 [Fork this repo on Github](https://github.com/vszal/pop-kustomize/fork)
 
 To keep file changes you make in Cloud Shell in sync with your repo, you can check these file changes into your new Github repo by following these [docs](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github). Note that the Github CLI is available in Cloud Shell.
 
-```bash
-gh --version
-```
 
 ## Setup a Cloud Build trigger for your repo
 Now that your Github repo is setup, configure Cloud Build to run each time a change is pushed to the main branch. To do this, add a Trigger in Cloud Build:
@@ -89,7 +87,8 @@ You must give Cloud Build explicit permission to trigger a Google Cloud Deploy r
 ## Demo Overview
 The demo flow outlines a typical developer pathway, submitting a change to a Git repo which then triggers a CI/CD process:
 1. Push a change the main branch of your forked repo. You can make any change such as a trivial change to the README.md file.
-2. A Cloud Build job is automatically triggered, which:
+2. A Cloud Build job is automatically triggered, using the <walkthrough-editor-open-file filePath="cloudbuild.yaml">
+cloudbuild.yaml</walkthrough-editor-open-file>  configuration file, which:
   * builds and pushes impages to Artifact Registry
   * creates a Google Cloud Deploy release in the pipeline
 3. You can then navigate to Google Cloud Deploy UI and shows promotion events:
