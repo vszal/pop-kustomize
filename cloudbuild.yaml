@@ -24,4 +24,6 @@ steps:
         "--annotations", "commitId=${REVISION_ID}",
         "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}"
       ]
+options:
+  requestedVerifyOption: VERIFIED
     
