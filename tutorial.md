@@ -15,9 +15,7 @@ This tutorial will help you get up and running with Google Cloud CI/CD, includin
 
 Once you've selected a project, click "Start".
 
-## Initialize
-
-### Set the PROJECT_ID environment variable
+## Set the PROJECT_ID environment variable
 
 Set the PROJECT_ID environment variable. This variable will be used in forthcoming steps.
 ```bash
@@ -42,6 +40,15 @@ Run the initialization script:
 
 Verify that the Google Cloud Deploy pipeline was created in the 
 [Google Cloud Deploy UI](https://console.cloud.google.com/deploy/delivery-pipelines)
+
+## (Optional) Turn on automated container vulnerability analysis
+Google Cloud Container Analysis can be set to automatically scan for vulnerabilities on push (see [pricing](https://cloud.google.com/container-analysis/pricing)). 
+
+To enable automated scanning, enable the Container Analysis API:
+
+```bash
+gcloud services enable containerscanning.googleapis.com
+```
 
 ## Configure your Github.com repo
 
