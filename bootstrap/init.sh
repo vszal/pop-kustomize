@@ -1,6 +1,9 @@
-# Initilize set project ID variable and run various initializations
-# ACTION REQUIRED! Change "project-id-here" value to the project you'll be using
-export PROJECT_ID="project-id-here"
+# Initializes APIS, sets up the Google Cloud Deploy pipeline
+# bail if PROJECT_ID is not set
+if [[ -z "${PROJECT_ID}" ]]; then
+  echo "The value of PROJECT_ID is not set. Be sure to run export PROJECT_ID=YOUR-PROJECT first"
+  return
+fi
 # sets the current project for gcloud
 gcloud config set project $PROJECT_ID
 # Enables various APIs you'll need
@@ -20,6 +23,8 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 # creates the Artifact Registry repo
 gcloud artifacts repositories create pop-stats --location=us-central1 \
 --repository-format=docker
+# customize the clouddeploy.yaml 
+sed -e "s/project-id-here/${PROJECT_ID}/" clouddeploy.yaml > clouddeploy_local.yaml
 # creates the Google Cloud Deploy pipeline
 gcloud deploy apply --file clouddeploy.yaml \
 --region=us-central1 --project=$PROJECT_ID

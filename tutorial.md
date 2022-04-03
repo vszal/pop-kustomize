@@ -25,9 +25,11 @@ export PROJECT_ID=<walkthrough-project-id/>
 ```
 
 ### Enable needed APIs and Create Google Cloud Deploy pipeline
-The `init.sh` script in the `bootstrap` folder enables your APIs, customizes your clouddeploy.yaml and creates a Cloud Deploy pipeline for you. You'll still need to do some steps manually after these scripts run, though.
+The <walkthrough-editor-open-file filePath="bootstrap/init.sh">bootstrap/init.sh
+</walkthrough-editor-open-file> script enables your APIs, customizes your <walkthrough-editor-open-file filePath="clouddeploy.yaml">clouddeploy.yaml
+</walkthrough-editor-open-file> and creates a Cloud Deploy pipeline for you. You'll still need to do some steps manually after these scripts run, though.
 
-1. Run the init script
+Run the initialization script:
 ```bash
 . ./bootstrap/init.sh
 ```
@@ -47,7 +49,7 @@ You'll need GKE clusters to deploy to. The Google Cloud Deploy pipeline in this 
 * productcluster
 
 If you have/want different cluster names update cluster definitions in:
-* <walkthrough-editor-select-regex filePath="bootstrap/gke-cluster-init.sh" regex="cluster">bootstrap / gke-cluster-init.sh</walkthrough-editor-select-regex>
+* <walkthrough-editor-select-regex filePath="bootstrap/gke-cluster-init.sh" regex="cluster">bootstrap/gke-cluster-init.sh</walkthrough-editor-select-regex>
 * <walkthrough-editor-select-regex filePath="clouddeploy.yaml" regex="cluster">clouddeploy.yaml</walkthrough-editor-select-regex>
 
 
