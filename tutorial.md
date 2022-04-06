@@ -44,11 +44,9 @@ Verify that the Google Cloud Deploy pipeline was created in the
 ## (Optional) Turn on automated container vulnerability analysis
 Google Cloud Container Analysis can be set to automatically scan for vulnerabilities on push (see [pricing](https://cloud.google.com/container-analysis/pricing)). 
 
-To enable automated scanning, enable the Container Analysis API:
+Enable Container Analysis API for automated scanning:
 
-```bash
-gcloud services enable containerscanning.googleapis.com
-```
+<walkthrough-enable-apis apis="containerscanning.googleapis.com"></walkthrough-enable-apis>
 
 ## Configure your Github.com repo
 
@@ -81,6 +79,8 @@ If you have/want different cluster names update cluster definitions in:
 ```bash
 . ./bootstrap/gke-cluster-init.sh
 ```
+
+Note that these clusters are created asynchronously, so check on the [GKE UI]("https://console.cloud.google.com/kubernetes/list/overview") periodically to ensure that the clusters are up before submitting your first release to Google Cloud Deploy.
 
 ## IAM and service account setup
 You must give Cloud Build explicit permission to trigger a Google Cloud Deploy release.
