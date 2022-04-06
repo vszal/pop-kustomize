@@ -1,5 +1,5 @@
 # Initializes APIS, sets up the Google Cloud Deploy pipeline
-# bail if PROJECT_ID is not set
+# bail if PROJECT_ID is not set 
 if [[ -z "${PROJECT_ID}" ]]; then
   echo "The value of PROJECT_ID is not set. Be sure to run export PROJECT_ID=YOUR-PROJECT first"
   return
