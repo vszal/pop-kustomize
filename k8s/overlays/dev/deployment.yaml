@@ -11,4 +11,4 @@ spec:
       - name: pop-stats
         env:
           - name: SITE_NAME
-            value: "Population Stats Test"
+            value: "Population Stats Test!"
