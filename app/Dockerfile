@@ -15,7 +15,7 @@ FROM python:3.10-slim@sha256:425d893546dbb7c9984aad25cd219a4f9086e48e6990c0368aa
 
 # add nonroot group/user
 RUN groupadd -g 999 nonroot && \
-    useradd -r -u 999 -g nonroot nonroot && \
+    useradd -r -u 999 -g nonroot nonroot
 # mkdir the workdir with nonroot ownership
 RUN mkdir /usr/app && chown nonroot:nonroot /usr/app
 WORKDIR /usr/app
