@@ -1,8 +1,9 @@
+# multi-stage build
 FROM python:3.10-slim as build
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
 build-essential gcc 
-
+# install dependencies in a venv
 WORKDIR /usr/app
 RUN python -m venv /usr/app/venv
 ENV PATH="/usr/app/venv/bin:$PATH"
@@ -22,7 +23,7 @@ WORKDIR /usr/app
 # copy in venv fromb build and app source files
 COPY --chown=nonroot:nonroot --from=build /usr/app/venv ./venv
 COPY --chown=nonroot:nonroot . .
-# run as nonroot user
+# run container as nonroot user
 USER 999
 # add venv to the path
 ENV PATH="/usr/app/venv/bin:$PATH"
