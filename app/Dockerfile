@@ -14,6 +14,9 @@ RUN pip install -r requirements.txt
 # run image
 FROM python:3.10-slim
 
+# Remove current openssl               
+RUN apt-get -y remove openssl
+
 # add nonroot group/user
 RUN groupadd -g 999 nonroot && \
     useradd -r -u 999 -g nonroot nonroot
