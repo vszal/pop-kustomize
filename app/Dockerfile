@@ -13,7 +13,8 @@ RUN pip install -r requirements.txt
 
 # run image
 FROM python:3.10-slim
-
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends
 # add nonroot group/user
 RUN groupadd -g 999 nonroot && \
     useradd -r -u 999 -g nonroot nonroot
