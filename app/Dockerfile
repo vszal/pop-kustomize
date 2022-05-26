@@ -12,7 +12,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # run image
-FROM python:3.10-alpine
+FROM python:3.10-slim
 
 # add nonroot group/user
 RUN groupadd -g 999 nonroot && \
