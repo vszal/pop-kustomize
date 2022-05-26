@@ -12,7 +12,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # run image
-FROM python:3.10-slim
+FROM python:3.10-alpine
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends
 # add nonroot group/user
