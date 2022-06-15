@@ -3,6 +3,7 @@ FROM python:3.10-slim as build
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
 build-essential gcc 
+
 # install dependencies in a venv
 WORKDIR /usr/app
 RUN python -m venv /usr/app/venv
