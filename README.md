@@ -25,4 +25,4 @@ Population data gathered from the U.S. Census Bureau [Population Estimate API](h
 
 Feedback and contributions welcomed!
 
-demo of logs + alerts 2
+demo of logs + alerts 3
