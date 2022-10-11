@@ -1,4 +1,4 @@
-# replace "project-id-here" in the three targets below with your actual project(s)
+# replace "qwiklabs-gcp-03-0c22c04ce213" in the three targets below with your actual project(s)
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
