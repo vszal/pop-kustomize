@@ -21,7 +21,6 @@ steps:
         "deploy", "releases", "create", "rel-${SHORT_SHA}",
         "--delivery-pipeline", "pop-stats-pipeline",
         "--region", "us-central1",
-        "--annotations", "commitId=${REVISION_ID}, prlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA}”,
         "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}"
       ]
 images:
