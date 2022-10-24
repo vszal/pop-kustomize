@@ -1,4 +1,4 @@
-# replace "project-id-here" in the three targets below with your actual project(s)
+# replace "qwiklabs-gcp-04-eaba4d0eb9eb" in the three targets below with your actual project(s)
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
@@ -21,7 +21,7 @@ metadata:
   name: test
 description: test cluster
 gke:
-  cluster: projects/project-id-here/locations/us-central1/clusters/testcluster
+  cluster: projects/qwiklabs-gcp-04-eaba4d0eb9eb/locations/us-east1/clusters/testcluster
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -30,7 +30,7 @@ metadata:
   name: staging
 description: staging cluster
 gke:
-  cluster: projects/project-id-here/locations/us-central1/clusters/stagingcluster
+  cluster: projects/qwiklabs-gcp-04-eaba4d0eb9eb/locations/us-east1/clusters/stagingcluster
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -40,4 +40,4 @@ metadata:
 description: prod cluster
 requireApproval: true
 gke:
-  cluster: projects/project-id-here/locations/us-central1/clusters/prodcluster
+  cluster: projects/qwiklabs-gcp-04-eaba4d0eb9eb/locations/us-east1/clusters/prodcluster
