@@ -2,7 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pop-stats
+  labels:
+    env: staging
 spec:
+  replicas: 3
   template:
     spec:
       containers:

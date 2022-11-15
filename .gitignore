@@ -3,6 +3,7 @@
 .gitignore
 *_local.*
 .vscode/*
+.theia/*
 anthos/*
 
 # Byte-compiled / optimized / DLL files

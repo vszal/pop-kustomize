@@ -9,3 +9,4 @@ spec:
   type: LoadBalancer
   selector:
     app: pop-stats
+  externalTrafficPolicy: Local

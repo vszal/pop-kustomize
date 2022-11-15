@@ -1,85 +1,23 @@
-# Google Cloud CI/CD End-to-End Demo
-This repo demostrates Kubernetes CI/CD with Google Cloud devops tools Google Cloud Deploy, Cloud Build, and Artifact Registry. The example app is based on a simple Python Flask example app named "Population Stats" and uses Kustomize overlays for manifest generation. 
+# Demo: Google Cloud CI/CD for GKE
+This repo demostrates CI/CD for GKE with Google Cloud tools Google Cloud Deploy, Cloud Build, and Artifact Registry. The example app is based on a simple Python Flask example app named "Population Stats" and uses Kustomize overlays to enable configuration differences across three different environments: test, staging, and prod..
 
-![Google Cloud E2E DevOps Architecture Diagram (1)](https://user-images.githubusercontent.com/76225123/145627874-86971a34-768b-4fc0-9e96-d7a769961321.png)
+[![Demo flow](https://user-images.githubusercontent.com/76225123/145627874-86971a34-768b-4fc0-9e96-d7a769961321.png)](https://user-images.githubusercontent.com/76225123/145627874-86971a34-768b-4fc0-9e96-d7a769961321.png)
 
-## Create a repo
-This demo relies on you making git check-ins to simulate a developer workflow. Fork this repo, or otherwise copy it into your own Github repo.
+## Fork this repo
+This demo relies on you making git check-ins to simulate a developer workflow. So you'll need your own copy of these files in your own Github.com repo.
 
-## Customize Cloud Deploy yaml
+[Fork this repo on Github](https://github.com/vszal/pop-kustomize/fork)
 
-1. In `clouddeploy.yaml`, replace `project-id-here` with your actual project for each of the three targets.
+If you've already done that, you can start the setup tutorial below.
 
-## Bootstrap Google Cloud demo
-Bootstrap scripts are in the `bootstrap` folder. 
+## Setup tutorial
+The following tutorial walks you through all the setup needed to configure Google Cloud services needed to run this demo. Clicking this button provisions a Cloud Shell Editor and launches an interactive tutorial which steps you through the process. Google Cloud account and project required.
 
-The `init.sh` script is provided to bootstrap much of the configuration setup. You'll still need to do some steps manually after this script runs though.
+[![Start tutorial in cloud shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/open?git_repo=https://github.com/vszal/pop-kustomize&cloudshell_workspace=.&cloudshell_tutorial=tutorial.md)
 
-1. In `init.sh`, replace project-id-here with your Google Cloud project-id on line 3.
-2. Run `. ./bootstrap/init.sh`
-3. Verify that the Google Cloud Deploy pipeline was created in [Google Cloud Deploy UI](https:///console.cloud.google.com/deploy/delivery-pipelines)
-4. Setup a Cloud Build trigger for your repo
-  * Navigate to [Cloud Build triggers page](https://console.cloud.google.com/cloud-build/triggers)
-  * Follow the [docs](https://cloud.google.com/build/docs/automating-builds/build-repos-from-github) and create a Github App connected repo and trigger.
+If you don't want to run the tutorial in Cloud Shell, you can view the md file [here](https://github.com/vszal/pop-kustomize/blob/main/tutorial.md).
 
-## Create GKE clusters
-You'll need GKE clusters to deploy out to as part of the demo. This repo refers to three clusters:
-* testcluster
-* stagingcluster
-* productcluster
-
-If you have/want different cluster names update cluster definitions in the gke-cluster-init.sh bash script and in clouddeploy.yaml
-
-To create the clusters, edit `bootstrap/gke-cluster-init.sh`:
-1. Replace `project-id-here` with your project-id on line 3.
-2. Run `. ./bootstrap/gke-cluster-init.sh`
-
-## IAM and service account setup
-You must give Cloud Build explicit permission to trigger a Cloud Deploy release.
-1. Read the [docs](https://cloud.google.com/deploy/docs/integrating)
-2. Navigate to IAM and locate your Cloud Build service account
-3. Add these two roles
-  * Cloud Deploy Releaser
-  * Service Account User
-
-## Demo
-The demo is very simple at this stage.
-1. User commits a change the main branch of the repo
-2. Cloud Build is automatically triggered, which:
-  * builds and pushes impages to Artifact Registry
-  * creates a Cloud Deploy release in the pipeline
-3. User then navigates to Cloud Deploy UI and shows promotion events:
-  * test cluster to staging clusters
-  * staging cluster to product cluster, with approval gate
-
-## Tear down
-To remove the three running GKE clusters, edit `bootstrap/gke-cluster-delete.sh`:
-1. Replace `project-id-here` with your project-id on line 3.
-2. Run `. ./bootstrap/gke-cluster-delete.sh`
-
-# Local dev
-To run this app locally, start minikube or some other local k8s framework and from the root of the repo run:
-
-`skaffold dev`
-
-The default skaffold settings use the "dev" customer overlay. 
-
-Once running, you can make file changes and observe the rebuilding of the container and redeployment.
-
-To test the staging overlays/profile:
-
-`skaffold run --profile staging`
-
-To test the staging overlays/profile:
-
-`skaffold run --profile prod`
-
-## Try it in Cloud Shell
-Google Cloud Shell provides a free environment in which to play with these files:
-
-[![Open in cloud shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/vszal/pop-kustomize&page=editor&open_in_editor=skaffold.yaml)
-
-# About the Sample app - Population stats
+## About the Sample app - Population stats
 
 Simple web app that pulls population data based on U.S. address queries. Note, other countries are currently not supported.
 

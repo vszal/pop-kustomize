@@ -1,20 +1,34 @@
-# Distroless Dockerfile for running in production
-FROM python:alpine3.7 AS build-env
+# multi-stage build
+FROM python:3.10-slim as build
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends \
+build-essential gcc 
 
-COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# install dependencies in a venv
+WORKDIR /usr/app
+RUN python -m venv /usr/app/venv
+ENV PATH="/usr/app/venv/bin:$PATH"
 
-FROM gcr.io/distroless/python3
-COPY --from=build-env /usr/local/lib/python3.7/site-packages /usr/local/lib/python3.7/site-packages
-COPY --from=build-env /usr/local/bin/gunicorn /home/worker/gunicorn
-ENV PATH="/home/worker:${PATH}"
-COPY . /home/worker
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-WORKDIR /home/worker
-ENV PYTHONPATH=/usr/local/lib/python3.7/site-packages
-# Service must listen to $PORT environment variable.
-# This default value facilitates local development.
+# run image
+FROM python:3.10-slim
+
+# add nonroot group/user
+RUN groupadd -g 999 nonroot && \
+    useradd -r -u 999 -g nonroot nonroot
+# mkdir the workdir with nonroot ownership
+RUN mkdir /usr/app && chown nonroot:nonroot /usr/app
+WORKDIR /usr/app
+# copy in venv fromb build and app source files
+COPY --chown=nonroot:nonroot --from=build /usr/app/venv ./venv
+COPY --chown=nonroot:nonroot . .
+# run container as nonroot user
+USER 999
+# add venv to the path
+ENV PATH="/usr/app/venv/bin:$PATH"
 ENV PORT 8080
-ENV GUNICORN_CMD_ARGS="--workers 2 --threads 2 -b 0.0.0.0:8080 --chdir /home/worker"
+ENV GUNICORN_CMD_ARGS="--workers 2 --threads 2 -b 0.0.0.0:8080 --chdir /usr/app"
 # Run the web service on container startup.
 CMD ["gunicorn",  "app:app"]

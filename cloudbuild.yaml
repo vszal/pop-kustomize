@@ -5,10 +5,10 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
     dir: 'app'
-  # Run unit tests
+  # Run api tests
   - name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}'
     entrypoint: python
-    args: ["unit_tests.py"]
+    args: ["api_tests.py"]
     dir: 'app'
   # Push the container image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -24,4 +24,8 @@ steps:
         "--annotations", "commitId=${REVISION_ID}",
         "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}"
       ]
+images:
+- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
+options:
+  requestedVerifyOption: VERIFIED
     

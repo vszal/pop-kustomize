@@ -2,13 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pop-stats
+  labels:
+    env: prod
 spec:
   replicas: 3
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
   template:
     spec:
       containers:

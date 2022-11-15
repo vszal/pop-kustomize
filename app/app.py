@@ -9,26 +9,27 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     # site name from env variable
-    site_name = os.environ.get('SITE_NAME')  
+    site_name = os.environ.get('SITE_NAME')
+    pod_name = os.environ.get('POD_NAME') 
     # grab IP from env variable
     ip_address = get_ip()
     if ip_address =='': #ip_address is undefined, likely missing fall-back environment variable
-        return render_template('error.html', site_name=site_name, error_status='Unable to get your IP address.')
+        return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status='Unable to get your IP address.')
     #if no zipcode in URL, guess based on geolocation
     try: 
         zipcode, country, lat, lng = get_location_by_ip(ip_address)
     except (requests.exceptions.RequestException, requests.exceptions.HTTPError):
-        return render_template('error.html', site_name=site_name, error_status='Unable to reach the geolocation API. Try again later.')
+        return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status='Unable to reach the geolocation API. Try again later.')
     # error if the geo location places user out of the U.S.
     if country != 'US':
-        return render_template('error.html', site_name=site_name, error_status=f'No data for country {country}.')
+        return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status=f'No data for country {country}.')
     #  get census data using geo coordinates
     try:
         county_name, county_population, density = get_census_data(lat, lng)
     except (requests.exceptions.RequestException, requests.exceptions.HTTPError):
-        return render_template('error.html', site_name=site_name, error_status='Unable to reach the census data API.')
+        return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status='Unable to reach the census data API.')
     # No errors, success path
-    return render_template('index.html', site_name=site_name, zipcode=zipcode, county=county_name, population=county_population, density=density, lat=lat, lng=lng)
+    return render_template('index.html', pod_name=pod_name, site_name=site_name, zipcode=zipcode, county=county_name, population=county_population, density=density, lat=lat, lng=lng)
       
 @app.route('/q', methods=['GET'])
 def address_query():
@@ -55,6 +56,12 @@ def address_query():
     return render_template('index.html', site_name=site_name, address=address_q, county=county_name, population=county_population, density=density, lat=lat, lng=lng)
     #return f'json= {testing}'
     #return f'lat = {lat}, lng = {lng}'
+
+@app.route('/load', methods=['GET'])
+def load_all_cpus():
+    from cpu_load_generator import load_all_cores
+    load_all_cores(duration_s=30, target_load=0.9)  # generates load on all cores
+    return "Load test done"
 
 @app.route('/h', methods=['GET'])
 def health_check():

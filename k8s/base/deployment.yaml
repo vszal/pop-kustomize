@@ -9,19 +9,35 @@ spec:
     matchLabels:
       app: pop-stats
   replicas: 1
+  minReadySeconds: 6
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   template:
     metadata:
       labels:
         app: pop-stats
     spec:
       containers:
-      - name: pop-stats
-        image: pop-stats
+      - image: pop-stats
+        name: pop-stats
+        readinessProbe:
+          periodSeconds: 1
+          httpGet:
+            path: /h
+            port: 8080
+        securityContext:
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
         ports:
         - containerPort: 8080
           protocol: TCP
         env:
-          - name: SITE_NAME
-            value: "Site Name"
           - name: DEV_EXT_IP
             value: "8.8.8.8"
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
