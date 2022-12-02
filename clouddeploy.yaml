@@ -41,3 +41,10 @@ description: prod cluster
 requireApproval: true
 gke:
   cluster: projects/project-id-here/locations/us-central1/clusters/prodcluster
+serialPipeline:
+  stages:
+  - targetID: prod
+    profiles: []
+    strategy:
+      standard:
+        verify: true
