@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2beta16
+apiVersion: skaffold/v3alpha1
 kind: Config
 metadata:
   name: pop-stats
@@ -20,6 +20,13 @@ portForward:
   resourceName: pop-stats
   port: 8080 
   localPort: 8080
+verify:
+- name: after-deploy-verification
+  contianer:
+    name: after-deploy-container
+    image: alpine:3:16
+    command: ["bin/sh"]
+    args: ["-c","wget http://130.211.209.216:8080/"  
 profiles:
   - name: staging
     deploy:
@@ -31,3 +38,5 @@ profiles:
       kustomize:
         paths: 
           - k8s/overlays/prod
+
+         
