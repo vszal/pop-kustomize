@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2.0.2
+apiVersion: skaffold/v3alpha1
 kind: Config
 metadata:
   name: pop-stats
