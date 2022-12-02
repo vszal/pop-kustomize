@@ -22,7 +22,7 @@ portForward:
   localPort: 8080
 verify:
 - name: after-deploy-verification
-  contianer:
+  container:
     name: after-deploy-container
     image: alpine:3.16
     command: ["bin/sh"]
