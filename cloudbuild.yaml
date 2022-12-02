@@ -15,7 +15,7 @@ steps:
     args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}']
   # Create release in Google Cloud Deploy
   # old image - name: gcr.io/google.com/cloudsdktool/cloud-sdk
-  - name: gcr.io/k8s-skaffold/skaffold:v2.0.2-lts
+  - name: 'gcr.io/k8s-skaffold/skaffold:v2.0.2-lts'
     entrypoint: gcloud
     args: 
       [
