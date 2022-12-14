@@ -39,7 +39,7 @@ profiles:
         command: ["bin/sh"]
         args: ["sleep -n 60"]
         command: ["bin/sh"]
-        args: ["wait -f"
+        args: ["wait -f"]
         command: ["bin/sh"]
         args: ["-c", "wget http://130.211.209.216:8080/"]            
 
