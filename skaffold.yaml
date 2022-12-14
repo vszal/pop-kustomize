@@ -35,7 +35,6 @@ profiles:
     - name: after-deploy-verification
       container:
         name: after-deploy-container
-        command: ["bin/sh ","sleep -n 60"]
         command: ["bin/sh"]
         args: ["-c", "wget http://130.211.209.216:8080/"]            
 
