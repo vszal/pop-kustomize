@@ -31,11 +31,11 @@ profiles:
       kustomize:
         paths: 
           - k8s/overlays/prod
-    verify:       
-    - name: after-deploy-verification
-      container:
-        name: after-deploy-container
-        command: ["bin/sh"]
-        args: ["-c", "wget http://130.211.209.216:8080/"]            
+verify:       
+   - name: after-deploy-verification
+     container:
+       name: after-deploy-container
+       command: ["bin/sh"]
+       args: ["-c", "wget http://130.211.209.216:8080/"]            
 
          
