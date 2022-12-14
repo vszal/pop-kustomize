@@ -34,7 +34,8 @@ profiles:
 verify:       
    - name: after-deploy-verification
      container:
-       name: after-deploy-container
+       name: alpine
+       image: alpine
        command: ["bin/sh"]
        args: ["-c", "wget http://130.211.209.216:8080/"]            
 
