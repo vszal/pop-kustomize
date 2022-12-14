@@ -37,7 +37,7 @@ profiles:
         name: after-deploy-wait-container
         image: alpine
         command: ["bin/sh"]
-        args: ["sleep -n 60"]
+        args: ["-n 60", "sleep"]
     - name: after-deploy-verification
       container:
         name: after-deploy-container  
