@@ -38,6 +38,12 @@ profiles:
         image: alpine
         command: ["bin/sh"]
         args: ["-n 60", "sleep"]
+  - name: prod
+    manifests:
+      kustomize:
+        paths: 
+          - k8s/overlays/prod
+    verify:        
     - name: after-deploy-verification
       container:
         name: after-deploy-container  
