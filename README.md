@@ -27,4 +27,4 @@ Feedback and contributions welcomed!
 
 demo of logs + alerts for artifact 1
 demo of pull attestor 2nd 
-demo of attestor built-by-cloud-build - 9
+demo of attestor built-by-cloud-build - 10
