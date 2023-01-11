@@ -1,34 +1,23 @@
 # multi-stage build
-FROM python:3.10-slim as build
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
-build-essential gcc 
+FROM cgr.dev/chainguard/python:latest-dev AS build
 
 # install dependencies in a venv
-WORKDIR /usr/app
-RUN python -m venv /usr/app/venv
-ENV PATH="/usr/app/venv/bin:$PATH"
-
-COPY requirements.txt .
+RUN python -m venv /home/nonroot/venv
+ENV PATH="/home/nonroot/venv/bin:$PATH"
+WORKDIR /home/nonroot
+COPY . /home/nonroot
 RUN pip install -r requirements.txt
 
 # run image
-FROM python:3.10-slim
+FROM cgr.dev/chainguard/python:latest
 
-# add nonroot group/user
-RUN groupadd -g 999 nonroot && \
-    useradd -r -u 999 -g nonroot nonroot
-# mkdir the workdir with nonroot ownership
-RUN mkdir /usr/app && chown nonroot:nonroot /usr/app
-WORKDIR /usr/app
-# copy in venv fromb build and app source files
-COPY --chown=nonroot:nonroot --from=build /usr/app/venv ./venv
-COPY --chown=nonroot:nonroot . .
+USER 65532
+WORKDIR /home/nonroot
+COPY --chown=nonroot:nonroot --from=build /home/nonroot /home/nonroot
+
 # run container as nonroot user
-USER 999
-# add venv to the path
-ENV PATH="/usr/app/venv/bin:$PATH"
+ENV PATH="/home/nonroot/venv/bin:$PATH"
 ENV PORT 8080
-ENV GUNICORN_CMD_ARGS="--workers 2 --threads 2 -b 0.0.0.0:8080 --chdir /usr/app"
+ENV GUNICORN_CMD_ARGS="--workers 2 --threads 4 -b 0.0.0.0:8080 --chdir /home/nonroot"
 # Run the web service on container startup.
 CMD ["gunicorn",  "app:app"]
