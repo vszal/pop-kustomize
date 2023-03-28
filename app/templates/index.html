@@ -2,22 +2,25 @@
 
 {% block content %} 
 
-    <div class="alert alert-success">Population estimates for <strong>{{county}}</strong></div>
-
+    <div class="alert alert-success">Population stats for <strong>{{ country_name }}</strong></div>
     <table class="table table-striped">
     <thead>
       <tr>
         <th>Population</th>
         <th>Density</th>
+        <th>Flag</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>{{ population }}</td>
-        <td>{{ density }}</td>  
+        <td>{{ density }}</td> 
+        <td><img src="{{ flag }}" alt="flag of {{ country_name }}" width="160px"></td>
       </tr>
   </tbody>
   </table>
 
-<div style="height: 600px" id="mapid"></div>
+<div id="mapid"> 
+ View on <a href="{{ map }}">Google Maps</a>
+</div>
 {% endblock %}
