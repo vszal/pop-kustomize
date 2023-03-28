@@ -26,7 +26,7 @@ def home():
         country_data = get_country_data_by_code(country_code)
     except (requests.exceptions.RequestException, requests.exceptions.HTTPError):
         # show an error
-        return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status='No countries match your query. Try again.')
+        return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status='The Rest Countries API appears to be down. Try again later.')
     # No errors, success path
     return render_template('index.html', pod_name=pod_name, site_name=site_name, country_name=country_data[0], population=country_data[1], density=country_data[2], map=country_data[3], flag=country_data[4] )
       
@@ -36,7 +36,7 @@ def get_country_search(country_name):
     pod_name = os.environ.get('POD_NAME')
     # name based query  
     try:
-        response = requests.get(f'https://restcountries.com/v3.1/name/{country_name}')
+        response = requests.get(f'https://restcountries.com/v3.1/translation/{country_name}')
     except (requests.exceptions.RequestException, requests.exceptions.HTTPError):
         return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status='The Rest Countries API appears to be down. Try again later.')
     # unless we got a 200 code, error out
@@ -62,6 +62,7 @@ def parse_api_data(data):
     population = data['population']
     area = data['area']
     population_density = population / area
+    population_density = int(population_density)
     map = data['maps']['googleMaps']
     flag = data['flags']['png']
 
