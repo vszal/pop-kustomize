@@ -23,26 +23,33 @@ def home():
         return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status='Unable to reach the geolocation API. Try again later.')
     # query based on country code
     try:
-        country_data = get_country_data(country_code)
+        country_data = get_country_data_by_code(country_code)
     except (requests.exceptions.RequestException, requests.exceptions.HTTPError):
         # show an error
         return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status='No countries match your query. Try again.')
     # No errors, success path
     return render_template('index.html', pod_name=pod_name, site_name=site_name, country_name=country_data[0], population=country_data[1], density=country_data[2], map=country_data[3], flag=country_data[4] )
       
-@app.route('/q/<country_search_string>', methods=['GET'])
-def get_country_search(country):
+@app.route('/q/<country_name>')
+def get_country_search(country_name):
+    site_name = os.environ.get('SITE_NAME')
+    pod_name = os.environ.get('POD_NAME')
+    # name based query  
     try:
-    # we got data from the query param
-        country_data = get_country_data(country_search_string)
-        return render_template('index.html', pod_name=pod_name, site_name=site_name, country_data=country_data)
+        response = requests.get(f'https://restcountries.com/v3.1/name/{country_name}')
     except (requests.exceptions.RequestException, requests.exceptions.HTTPError):
+        return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status='The Rest Countries API appears to be down. Try again later.')
+    # unless we got a 200 code, error out
+    if response.status_code != 200:
         return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status='No countries match your query. Try again.')
+    json_data = response.json()[0]
+    country_data = parse_api_data(json_data)
+    return render_template('index.html', pod_name=pod_name, site_name=site_name, country_name=country_data[0], population=country_data[1], density=country_data[2], map=country_data[3], flag=country_data[4] )
 
-def get_country_data(country):
+def get_country_data_by_code(country_code):
     # we got data from the country param query
     try:
-        response = requests.get(f'https://restcountries.com/v3.1/name/{country}')
+        response = requests.get(f'https://restcountries.com/v3.1/alpha/{country_code}')
         json_data = response.json()[0]
         country_data = parse_api_data(json_data)
         return country_data

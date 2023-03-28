@@ -25,7 +25,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Country</span>
            </div>
-          <input class="form-control" name="country_input" type="text" id="country_input" value="{{country}}" onfocus="this.value=''">
+          <input class="form-control" name="country_input" type="text" id="country_input" value="{{ country_name }}" onfocus="this.value=''">
           <div class="input-group-append">
            <button class="btn btn-secondary" type="submit" onclick=""><i class="fa fa-search"></i></button>
            <button type="button" onclick="window.location.href = '{{url_for("home")}}'" class="btn btn-primary"><i class="fas fa-map-marker-alt"></i></i></button>
@@ -45,6 +45,20 @@
   </span>
   </div>
 </footer>
+<script>
+  document.getElementById('country_input').onkeydown = function(e){
+    if(e.keyCode == 13){
+      UpdateURL()
+    }
+  };
+  function UpdateURL(){
+
+    var domain = "{{url_for('home')}}" 
+    var query_prefix = "q/"
+    var country_input = document.getElementById("country_input").value;
+    window.location.href = domain + query_prefix + country_input;
+  }
+  </script>
 
 </body>
 </html>
