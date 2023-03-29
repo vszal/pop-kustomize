@@ -44,7 +44,7 @@ def get_country_search(country_name):
         return render_template('error.html', pod_name=pod_name, site_name=site_name, error_status='No countries match your query. Try again.')
     json_data = response.json()[0]
     country_data = parse_api_data(json_data)
-    return render_template('index.html', pod_name=pod_name, site_name=site_name, country_name=country_data[0], population=country_data[1], density=country_data[2], map=country_data[3], flag=country_data[4] )
+    return render_template('index.html', pod_name=pod_name, site_name=site_name, country_name=country_name, population=country_data[1], density=country_data[2], map=country_data[3], flag=country_data[4] )
 
 def get_country_data_by_code(country_code):
     # we got data from the country param query
