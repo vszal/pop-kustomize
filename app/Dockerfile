@@ -20,4 +20,4 @@ ENV PATH="/home/nonroot/venv/bin:$PATH"
 ENV PORT 8080
 ENV GUNICORN_CMD_ARGS="--workers 2 --threads 4 -b 0.0.0.0:8080 --chdir /home/nonroot"
 # Run the web service on container startup.
-CMD ["gunicorn",  "app:app"]
+ENTRYPOINT ["gunicorn",  "app:app"]
