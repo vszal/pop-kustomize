@@ -8,7 +8,6 @@ serialPipeline:
  stages:
  - targetId: test
  - targetId: staging
-<<<<<<< HEAD
    profiles:
    - staging
    canary:
@@ -22,12 +21,11 @@ serialPipeline:
         verify: false     
 =======
    profiles: [staging]
->>>>>>> f163cd99e2e62f4584654cac8fc285fef60925f7
  - targetId: prod
    profiles: [prod]
    strategy:
      standard:
-       verify: true
+       verify: false
 ---
 
 apiVersion: deploy.cloud.google.com/v1
