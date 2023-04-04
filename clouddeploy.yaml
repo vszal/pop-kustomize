@@ -17,7 +17,7 @@ serialPipeline:
            service: "my-service"
            deployment: "my-deployment"
       canaryDeployment:
-        percentages: [50]
+        percentages: [10, 50, 75, 100]
         verify: false     
 =======
    profiles: [staging]
