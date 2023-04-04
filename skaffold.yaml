@@ -1,9 +1,9 @@
-apiVersion: skaffold/v2beta16
+apiVersion: skaffold/v3alpha1
 kind: Config
 metadata:
   name: pop-stats
 build:
-# Uncomment if you're using minikube for local dev and don't want to push to Artifact Registry
+# Uncomment if you're using minikube for loca dev and don't want to push to Artifact Registry
 #  local: 
 #    push: false
   artifacts:
@@ -11,23 +11,32 @@ build:
     context: app
     docker:
       dockerfile: Dockerfile
-deploy:
+manifests:
   kustomize:
-    paths: 
+    paths:
       - k8s/overlays/dev
 portForward:
 - resourceType: deployment
   resourceName: pop-stats
-  port: 8080 
+  port: 8080
   localPort: 8080
 profiles:
   - name: staging
-    deploy:
+    manifests:
       kustomize:
         paths: 
           - k8s/overlays/staging
   - name: prod
-    deploy:
+    manifests:
       kustomize:
         paths: 
           - k8s/overlays/prod
+verify:       
+   - name: after-deploy-verification
+     container:
+       name: alpine
+       image: alpine
+       command: ["bin/sh"]
+       args: ["-c", "wget http://130.211.209.216:8080/"]            
+
+         

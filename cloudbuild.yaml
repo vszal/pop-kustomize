@@ -14,7 +14,8 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}']
   # Create release in Google Cloud Deploy
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  # old image - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args: 
       [

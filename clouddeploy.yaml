@@ -8,6 +8,7 @@ serialPipeline:
  stages:
  - targetId: test
  - targetId: staging
+<<<<<<< HEAD
    profiles:
    - staging
    canary:
@@ -19,9 +20,14 @@ serialPipeline:
       canaryDeployment:
         percentages: [50]
         verify: false     
+=======
+   profiles: [staging]
+>>>>>>> f163cd99e2e62f4584654cac8fc285fef60925f7
  - targetId: prod
-   profiles:
-   - prod
+   profiles: [prod]
+   strategy:
+     standard:
+       verify: true
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -50,3 +56,4 @@ description: prod cluster
 requireApproval: true
 gke:
   cluster: projects/project-id-here/locations/us-central1/clusters/prodcluster
+
