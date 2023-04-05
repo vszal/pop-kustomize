@@ -13,8 +13,8 @@ serialPipeline:
      runtimeConfig:
        kubernetes:
          serviceNetworking:
-           service: "my-service"
-           deployment: "my-deployment"
+           service: pop-stats
+           deployment: pop-stats
       canaryDeployment:
         percentages: [50]
         verify: false      
