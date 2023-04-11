@@ -25,18 +25,24 @@ serialPipeline:
      runtimeConfig:
        kubernetes:
          serviceNetworking:
-           service: "my-service"
-           deployment: "my-deployment"
+           service: pop-stats
+           deployment: pop-stats
       canaryDeployment:
         percentages: [50]
         verify: false     
-=======
-   profiles: [staging]
+#   profiles: [staging]
  - targetId: prod
-   profiles: [prod]
-   strategy:
-     standard:
-       verify: false
+   profiles:
+   - prod
+   canary:
+     runtimeConfig:
+       kubernetes:
+         serviceNetworking:
+           service: pop-stats
+           deployment: pop-stats
+      canaryDeployment:
+        percentages: [50]
+        verify: false  
 ---
 
 apiVersion: deploy.cloud.google.com/v1
