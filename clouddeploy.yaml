@@ -10,15 +10,16 @@ serialPipeline:
  - targetId: staging
    profiles:
    - staging
-   canary:
-     runtimeConfig:
-       kubernetes:
-         serviceNetworking:
-           service: pop-stats
-           deployment: pop-stats
-      canaryDeployment:
-        percentages: [50]
-        verify: false     
+   strategy:
+     canary:
+       runtimeConfig:
+         kubernetes:
+           serviceNetworking:
+             service: pop-stats
+             deployment: pop-stats
+        canaryDeployment:
+          percentages: [50]
+          verify: false  
 #   profiles: [staging]
  - targetId: prod
    profiles:
