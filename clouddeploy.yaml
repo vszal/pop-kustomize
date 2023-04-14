@@ -5,34 +5,32 @@ metadata:
   name: pop-stats-pipeline
 description: pop-stats application delivery pipeline
 serialPipeline:
- stages:
- - targetId: test   
- - targetId: staging
-   profiles:
-   - staging
-   strategy:
-     canary:
-       runtimeConfig:
-         kubernetes:
-           serviceNetworking:
-             service: pop-stats
-             deployment: pop-stats
+  stages:
+  - targetId: test
+  - targetId: staging
+    profiles: [staging]
+    strategy:
+      canary:
+        runtimeConfig:
+          kubernetes:
+            serviceNetworking:
+              service: "my-service"
+              deployment: "my-deployment"
         canaryDeployment:
-          percentages: [50]
+          percentages: [0]
           verify: false  
-#   profiles: [staging]
- - targetId: prod
-   profiles:
-   - prod
-   canary:
-     runtimeConfig:
-       kubernetes:
-         serviceNetworking:
-           service: pop-stats
-           deployment: pop-stats
-      canaryDeployment:
-        percentages: [50]
-        verify: false  
+  - targetId: prod
+    profiles: []
+    strategy:
+      canary:
+        runtimeConfig:
+          kubernetes:
+            serviceNetworking:
+             service: "pop-stats"
+             deployment: "pop-stats"
+        canaryDeployment:
+          percentages: [25,50]
+          verify: false  
 ---
 
 apiVersion: deploy.cloud.google.com/v1
