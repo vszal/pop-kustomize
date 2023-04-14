@@ -14,13 +14,13 @@ serialPipeline:
         runtimeConfig:
           kubernetes:
             serviceNetworking:
-              service: "my-service"
-              deployment: "my-deployment"
+              service: "pop-stats"
+              deployment: "pop-stats"
         canaryDeployment:
           percentages: [0]
           verify: false  
   - targetId: prod
-    profiles: []
+    profiles: [prod]
     strategy:
       canary:
         runtimeConfig:
