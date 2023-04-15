@@ -1,5 +1,5 @@
 # multi-stage build
-FROM python:3.10-slim as build
+FROM python:3.11-slim as build
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
 build-essential gcc 
