@@ -2,20 +2,24 @@
 # NOTE: currently requires SCM triggering due to dependency on the COMMIT_SHA variable
 steps:
   # Build and tag using commit sha
-  - name: 'gcr.io/cloud-builders/docker'
+  - id: build
+    name: 'gcr.io/cloud-builders/docker'
     args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
     dir: 'app'
   # Run api tests
-  - name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}'
+  - id: api tests
+    name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}'
     entrypoint: python
     args: ["api_tests.py"]
     dir: 'app'
   # Push the container image to Artifact Registry
-  - name: 'gcr.io/cloud-builders/docker'
+  - id: image push
+    name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}']
   # Create release in Google Cloud Deploy
   # old image - name: gcr.io/google.com/cloudsdktool/cloud-sdk
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  - id: deploy to cloud deploy
+    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args: 
       [
