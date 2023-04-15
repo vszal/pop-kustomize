@@ -32,5 +32,6 @@ steps:
 images:
 - us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
 options:
+  machineType: 'N1_HIGHCPU_8'
   requestedVerifyOption: VERIFIED
     
