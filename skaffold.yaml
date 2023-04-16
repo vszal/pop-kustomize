@@ -43,6 +43,4 @@ verify:
        name: alpine
        image: alpine
        command: ["bin/sh"]
-       args: ["-c", "wget http://34.122.82.173:8080/h"]            
-
-         
+       args: ["curl http://34.122.82.173:8080/h"]
