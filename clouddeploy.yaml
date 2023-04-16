@@ -18,7 +18,7 @@ serialPipeline:
               deployment: "pop-stats"
         canaryDeployment:
           percentages: [0]
-          verify: false  
+          verify: true  
   - targetId: prod
     profiles: [prod]
     strategy:
