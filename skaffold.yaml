@@ -45,16 +45,17 @@ profiles:
         paths: 
           - k8s/overlays/prod
     verify:
-    #Call Healthcheck on StagingProd Target URL       
+    #Call Healthcheck on Prod Target URL       
     - name: pro-healthcheck
       container:
-        name: alpine
+        name: alpine-health
         image: alpine
         command: ["bin/sh"]
         args: ["-c", "wget http://130.211.209.216:8080/h"]
+    #Call Loadgen on Prod Target URL     
     - name: prod-loadgen
       container:
-        name: alpine
+        name: alpine-load
         image: alpine
         command: ["bin/sh"]
         args: ["-c", "wget http://130.211.209.216:8080/load"]
