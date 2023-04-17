@@ -30,7 +30,7 @@ serialPipeline:
              deployment: "pop-stats"
         canaryDeployment:
           percentages: [25,50]
-          verify: false  
+          verify: true  
 ---
 
 apiVersion: deploy.cloud.google.com/v1
