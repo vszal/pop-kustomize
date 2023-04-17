@@ -46,9 +46,15 @@ profiles:
           - k8s/overlays/prod
     verify:
     #Call Healthcheck on StagingProd Target URL       
-    - name: staging-healthcheck
+    - name: pro-healthcheck
       container:
         name: alpine
         image: alpine
         command: ["bin/sh"]
         args: ["-c", "wget http://130.211.209.216:8080/h"]
+    - name: prod-loadgen
+      container:
+        name: alpine
+        image: alpine
+        command: ["bin/sh"]
+        args: ["-c", "wget http://130.211.209.216:8080/load"]
