@@ -41,6 +41,6 @@ verify:
    - name: staging-healthcheck
      container:
        name: alpine
-       image: alpine
+       image: alpine/curl
        command: ["bin/sh"]
-       args: ["curl http://34.122.82.173:8080/h"]
+       args: ["-v", "curl http://34.122.82.173:8080/h"]
