@@ -40,7 +40,7 @@ verify:
 #Call Healthcheck on Staging Target URL       
    - name: staging-healthcheck
      container:
-       name: alpine
-       image: alpine/curl
-       command: ["curl -v http://34.122.82.173:8080/h"]
-       # args: ["-v", "curl http://34.122.82.173:8080/h"]
+       name: curl
+       image: curlimages/curl
+       command: ["bin/sh"]
+       args: ["-v", "curl http://34.122.82.173:8080/h"]
