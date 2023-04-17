@@ -42,5 +42,5 @@ verify:
      container:
        name: curl
        image: curlimages/curl
-       command: ["bin/sh"]
-       args: ["-v", "curl http://34.122.82.173:8080/h"]
+       command: ["docker run"]
+       args: ["-it", "--rm", "http://34.122.82.173:8080/h"]
