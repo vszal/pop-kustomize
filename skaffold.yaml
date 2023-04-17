@@ -40,7 +40,7 @@ verify:
 #Call Healthcheck on Staging Target URL       
    - name: staging-healthcheck
      container:
-       name: curl
-       image: curlimages/curl
-       command: ["docker run"]
-       args: ["-it", "--rm", "http://34.122.82.173:8080/h"]
+       name: alpine
+       image: alpine
+       command: ["bin/sh"]
+       args: ["-c", "wget http://34.122.82.173:8080/h"]
