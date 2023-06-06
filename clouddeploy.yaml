@@ -39,7 +39,7 @@ metadata:
   name: test
 description: test cluster
 gke:
-  cluster: projects/end-to-end-demo-v1/locations/us-central1/clusters/testcluster
+  cluster: projects/riccardo-blog-test-v1/locations/us-central1/clusters/testcluster
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -48,7 +48,7 @@ metadata:
   name: staging
 description: staging cluster
 gke:
-  cluster: projects/end-to-end-demo-v1/locations/us-central1/clusters/stagingcluster
+  cluster: projects/riccardo-blog-test-v1/locations/us-central1/clusters/stagingcluster
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -58,5 +58,5 @@ metadata:
 description: prod cluster
 requireApproval: true
 gke:
-  cluster: projects/end-to-end-demo-v1/locations/us-central1/clusters/prodcluster
+  cluster: projects/riccardo-blog-test-v1/locations/us-central1/clusters/prodcluster
 
