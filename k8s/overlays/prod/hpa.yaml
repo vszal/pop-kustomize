@@ -4,7 +4,11 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: pop-stats
 spec:
+  scaleTargetRef:
+    kind: deployment
+    name: pop-stats
   minReplicas: 2
+  maxReplicas: 2
  # maxReplicas: 10
   metrics:
   - type: Resource
