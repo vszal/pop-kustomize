@@ -38,7 +38,7 @@ profiles:
         name: alpine
         image: alpine
         command: ["bin/sh"]
-        args: ["-c", "wget http://34.122.82.173:8080/h"]          
+        args: ["-c", "wget http://34.71.242.3:8080/h"]          
   - name: prod
     manifests:
       kustomize:
@@ -51,11 +51,11 @@ profiles:
         name: alpine-health
         image: alpine
         command: ["bin/sh"]
-        args: ["-c", "wget http://130.211.209.216:8080/h"]
+        args: ["-c", "wget http://104.154.222.255:8080/h"]
     #Call Loadgen on Prod Target URL     
     - name: prod-loadgen
       container:
         name: alpine-load
         image: alpine
         command: ["bin/sh"]
-        args: ["-c", "wget http://130.211.209.216:8080/load"]
+        args: ["-c", "wget http://104.154.222.255:8080/load"]
