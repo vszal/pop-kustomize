@@ -23,7 +23,7 @@ steps:
     entrypoint: gcloud
     args: 
       [
-        "deploy", "releases", "create", "rel-${SHORT_SHA}",
+        "deploy", "releases", "create", "rel-${COMMIT_SHA}",
         "--delivery-pipeline", "pop-stats-pipeline",
         "--region", "us-central1",
         "--annotations", "commitId=${REVISION_ID}, gitlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA}",
