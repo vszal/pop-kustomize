@@ -4,18 +4,18 @@ steps:
   # Build and tag using commit sha
   - id: build
     name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
+    args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${TAG_NAME}', '-f', 'Dockerfile']
     dir: 'app'
   # Run api tests
   - id: api tests
-    name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}'
+    name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${TAG_NAME}'
     entrypoint: python
     args: ["api_tests.py"]
     dir: 'app'
   # Push the container image to Artifact Registry
   - id: image push
     name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${TAG_NAME}']
   # Create release in Google Cloud Deploy
   # old image - name: gcr.io/google.com/cloudsdktool/cloud-sdk
   - id: deploy to cloud deploy
@@ -23,14 +23,14 @@ steps:
     entrypoint: gcloud
     args: 
       [
-        "deploy", "releases", "create", "rel-${COMMIT_SHA}",
+        "deploy", "releases", "create", "rel-${SHORT_SHA}",
         "--delivery-pipeline", "pop-stats-pipeline",
         "--region", "us-central1",
         "--annotations", "commitId=${REVISION_ID}, gitlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA}",
-        "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}"
+        "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stat:s${TAG_NAME}"
       ]
 images:
-- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
+- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stat:${TAG_NAME}
 options:
   machineType: 'E2_HIGHCPU_8'
   requestedVerifyOption: VERIFIED
