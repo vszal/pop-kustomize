@@ -4,11 +4,11 @@ steps:
   # Build and tag using commit sha
   - id: build
     name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
+    args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@sha256:${COMMIT_SHA}', '-f', 'Dockerfile']
     dir: 'app'
   # Run api tests
   - id: api tests
-    name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}'
+    name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@sha256:${COMMIT_SHA}'
     entrypoint: python
     waitFor:
     - build
@@ -19,7 +19,7 @@ steps:
     name: 'gcr.io/cloud-builders/docker'
     waitFor:
     - build
-    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@sha256:${COMMIT_SHA}']
   # Create release in Google Cloud Deploy
   # old image - name: gcr.io/google.com/cloudsdktool/cloud-sdk
   - id: deploy to cloud deploy
@@ -31,10 +31,10 @@ steps:
         "--delivery-pipeline", "pop-stats-pipeline",
         "--region", "us-central1",
         "--annotations", "commitId=${REVISION_ID}, gitlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA}",
-        "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stat:s${COMMIT_SHA}"
+        "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@sha256:${COMMIT_SHA}"
       ]
 images:
-- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
+- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@sha256:${COMMIT_SHA}
 options:
   machineType: 'E2_HIGHCPU_8'
   requestedVerifyOption: VERIFIED
