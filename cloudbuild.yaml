@@ -8,7 +8,7 @@ steps:
     dir: 'app'
   # Run api tests
   - id: api tests
-    name: us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
+    name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}'
     entrypoint: python
     waitFor:
     - build
@@ -36,12 +36,12 @@ steps:
         gcloud deploy releases create release-${SHORT_SHA} \
           --region us-central1 \
           --delivery-pipeline=pop-stats-pipeline \
-          --annotations", "commitId=${REVISION_ID}, gitlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA} \
+          --annotations=commitId=${REVISION_ID}, gitlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA} \
           --images=pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@$frontend_sha 
 
       
 images:
-- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:$SHORT_SHA}
+- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${SHORT_SHA}
 options:
   machineType: 'E2_HIGHCPU_8'
   requestedVerifyOption: VERIFIED
