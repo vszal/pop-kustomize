@@ -23,25 +23,18 @@ steps:
   # Create release in Google Cloud Deploy
   # old image - name: gcr.io/google.com/cloudsdktool/cloud-sdk
   - id: deploy to cloud deploy
-    name: "gcr.io/cloud-builders/gcloud:latest"
-    entrypoint: /bin/bash
-    args:
-      - "-xe"
-      - "-c"
-      - |
-        # Retrieve image SHAs
-        frontend_sha=$(gcloud artifacts docker images describe us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA} --format="value(image_summary.digest)")
-      
-        # Create Cloud Deploy release with new images
-        gcloud deploy releases create release-${SHORT_SHA} \
-          --region us-central1 \
-          --delivery-pipeline=pop-stats-pipeline \
-          --annotations", "commitId=${REVISION_ID}, gitlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA} \
-          --images=pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@$frontend_sha 
-
-      
+    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: 
+      [
+        "deploy", "releases", "create", "rel-${SHORT_SHA}",
+        "--delivery-pipeline", "pop-stats-pipeline",
+        "--region", "us-central1",
+        "--annotations", "commitId=${REVISION_ID}, gitlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA}",
+        "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}"
+      ]
 images:
-- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:$SHORT_SHA}
+- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
 options:
   machineType: 'E2_HIGHCPU_8'
   requestedVerifyOption: VERIFIED
