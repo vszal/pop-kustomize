@@ -34,7 +34,7 @@ steps:
         "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stat:s${COMMIT_SHA}"
       ]
 images:
-- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stat:${COMMIT_SHA}
+- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
 options:
   machineType: 'E2_HIGHCPU_8'
   requestedVerifyOption: VERIFIED
