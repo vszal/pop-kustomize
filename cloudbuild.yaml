@@ -8,7 +8,7 @@ steps:
     dir: 'app'
   # Run api tests
   - id: api tests
-    name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@sha256:${COMMIT_SHA}'
+    name: us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@sha256:${COMMIT_SHA}
     entrypoint: python
     waitFor:
     - build
