@@ -10,11 +10,15 @@ steps:
   - id: api tests
     name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${TAG_NAME}'
     entrypoint: python
+    waitFor:
+    - build
     args: ["api_tests.py"]
     dir: 'app'
   # Push the container image to Artifact Registry
   - id: image push
     name: 'gcr.io/cloud-builders/docker'
+    waitFor:
+    - build
     args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${TAG_NAME}']
   # Create release in Google Cloud Deploy
   # old image - name: gcr.io/google.com/cloudsdktool/cloud-sdk
