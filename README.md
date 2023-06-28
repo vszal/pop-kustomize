@@ -19,8 +19,8 @@ If you don't want to run the tutorial in Cloud Shell, you can view the md file [
 
 ## About the Sample app - Population stats
 
-Simple web app that pulls population data based on U.S. address queries. Note, other countries are currently not supported.
+Simple web app that pulls population and flag data based on country query.
 
-Population data gathered from the U.S. Census Bureau [Population Estimate API](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html). 
+Population data from restcountries.com API.
 
 Feedback and contributions welcomed!
