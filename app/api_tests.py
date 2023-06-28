@@ -8,7 +8,7 @@ class TestPopulation(unittest.TestCase):
         Test that method returns expected country
         """
         ip_address = "8.8.8.8"
-        cc = get_country_code_by_ip(ip_address)
+        cc = target.get_country_code_by_ip(ip_address)
         self.assertEqual(cc, US)    
 
 if __name__ == '__main__':
