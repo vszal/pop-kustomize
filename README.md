@@ -4,7 +4,7 @@ This repo is a fork of https://github.com/nateaveryg/pop-kustomize which is mean
 setting up a project in GCP that follows devops best practices.
 
 The demo will be used to display:
-- [] Cloud workstations
+- [x] Cloud workstations
 - [] GCB triggering
 - [] Build and push to AR
 - [] Image scanning (AR can do this on push)
@@ -18,20 +18,30 @@ The demo will be used to display:
 
 ## Setup tutorial
 
-This tutorial will help you get up and running with Google Cloud CI/CD, including Cloud Build, Google Cloud Deploy, and Artifact Registry
+After forking the repo, follow along here.
 
-## Select a project
-
-<walkthrough-project-setup billing="true"></walkthrough-project-setup>
-
-Once you've selected a project, click "Start".
-
-## Set the PROJECT_ID environment variable
+## Setup: enable APIs
 
 Set the PROJECT_ID environment variable. This variable will be used in forthcoming steps.
+
 ```bash
 export PROJECT_ID=<walkthrough-project-id/>
+# sets the current project for gcloud
+gcloud config set project $PROJECT_ID
+# Enables various APIs you'll need
+gcloud services enable container.googleapis.com cloudbuild.googleapis.com \
+  artifactregistry.googleapis.com clouddeploy.googleapis.com \
+  cloudresourcemanager.googleapis.com \ secretmanager.googleapis.com
 ```
+
+## Setup a Cloud Build trigger for your repo
+
+Configure Cloud Build to run each time a change is pushed to the main branch. To do this, add a Trigger in Cloud Build:
+  1. Follow https://cloud.google.com/build/docs/automating-builds/github/connect-repo-github to connect
+     your GitHub repo
+  2. Follow https://cloud.google.com/build/docs/automating-builds/github/build-repos-from-github?generation=2nd-gen to setup triggering:
+    * Setup PR triggering to run cloudbuild-test.yaml
+    * Setup triggering on the `main` branch to run cloudbuild-deploy.yaml
 
 ### Enable needed APIs and Create Google Cloud Deploy pipeline
 The 
@@ -59,19 +69,6 @@ Enable Container Analysis API for automated scanning:
 
 <walkthrough-enable-apis apis="containerscanning.googleapis.com"></walkthrough-enable-apis>
 
-## Configure your Github.com repo
-
-If you have not fork this repo yet, please do so now:
-
-[Fork this repo on Github](https://github.com/vszal/pop-kustomize/fork)
-
-To keep file changes you make in Cloud Shell in sync with your repo, you can check these file changes into your new Github repo by following these [docs](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github). Note that the Github CLI is available in Cloud Shell.
-
-
-## Setup a Cloud Build trigger for your repo
-Now that your Github repo is setup, configure Cloud Build to run each time a change is pushed to the main branch. To do this, add a Trigger in Cloud Build:
-  * Navigate to [Cloud Build triggers page](https://console.cloud.google.com/cloud-build/triggers)
-  * Follow the [docs](https://cloud.google.com/build/docs/automating-builds/build-repos-from-github) and create a Github App connected repo and trigger.
 
 ## Create GKE clusters
 You'll need GKE clusters to deploy to. The Google Cloud Deploy pipeline in this example refers to three clusters:
