@@ -41,7 +41,7 @@ steps:
           --images=pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}@$(cat digest)
         
 
-### Known Good Release ###        
+### Known Good Release ####        
         # Create Cloud Deploy release with new images
         #gcloud deploy releases create release-${SHORT_SHA} \
         #  --region us-central1 \
