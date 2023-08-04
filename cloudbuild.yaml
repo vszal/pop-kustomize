@@ -38,7 +38,7 @@ steps:
           --delivery-pipeline=pop-stats-pipeline \
           --annotations=commitId=${REVISION_ID} \
           --annotations gitlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA} \
-          --images=pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@sha256:{COMMIT_SHA}
+          --images=pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:{COMMIT_SHA}
   # Will try fron-end_sha another time
   #        --images=pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@$frontend_sha 
 
