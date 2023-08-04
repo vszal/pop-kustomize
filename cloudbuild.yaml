@@ -31,15 +31,25 @@ steps:
       - |
         # Retrieve image SHAs
         #frontend_sha=$(gcloud artifacts docker images describe us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA} --format="value(image_summary.digest)")
-      
-        # Create Cloud Deploy release with new images
-        gcloud deploy releases create release-${SHORT_SHA} \
+
+        gcloud deploy releases create release-$$DATE-$TIME \
           --region us-central1 \
           --delivery-pipeline=pop-stats-pipeline \
           --annotations=commitId=${REVISION_ID} \
           --annotations gitlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA} \
           --images=pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
-  # Will try fron-end_sha another time
+        
+
+### Known Good Release ###        
+        # Create Cloud Deploy release with new images
+        #gcloud deploy releases create release-${SHORT_SHA} \
+        #  --region us-central1 \
+        #  --delivery-pipeline=pop-stats-pipeline \
+        #  --annotations=commitId=${REVISION_ID} \
+        #  --annotations gitlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA} \
+        #  --images=pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
+
+        # Will try fron-end_sha another time
   #        --images=pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats@$frontend_sha 
 
       
