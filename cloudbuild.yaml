@@ -32,7 +32,7 @@ steps:
         # Retrieve image SHAs
         #frontend_sha=$(gcloud artifacts docker images describe us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA} --format="value(image_summary.digest)")
 
-        gcloud deploy releases create release-$DATE-'%Y%m%d%H%M%S' \
+        gcloud deploy releases create release-$(date +'%Y%m%d%H%M%S') \
           --region us-central1 \
           --delivery-pipeline=pop-stats-pipeline \
           --annotations=commitId=${REVISION_ID} \
