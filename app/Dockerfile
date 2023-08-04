@@ -1,5 +1,5 @@
 # multi-stage build
-FROM cgr.dev/chainguard/python:3.10-dev AS build
+FROM cgr.dev/chainguard/python:latest-dev AS build
 
 # install dependencies in a venv
 RUN python -m venv /home/nonroot/venv
@@ -9,7 +9,7 @@ COPY . /home/nonroot
 RUN pip install -r requirements.txt
 
 # run image
-FROM cgr.dev/chainguard/python:3.10-dev
+FROM cgr.dev/chainguard/python:latest
 
 USER 65532
 WORKDIR /home/nonroot
