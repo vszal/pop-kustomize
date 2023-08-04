@@ -31,8 +31,8 @@ steps:
       - |
         # Retrieve image SHA256 place into file
         gcloud artifacts docker images describe \
-          'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}' \
-          --format 'value(image_summary.digest)' > digest        
+           'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}' \
+           --format 'value(image_summary.digest)' > digest        
 
         gcloud deploy releases create release-$(date +'%Y%m%d%H%M%S') \
           --region us-central1 \
