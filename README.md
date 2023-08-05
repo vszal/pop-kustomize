@@ -17,6 +17,13 @@ The following tutorial walks you through all the setup needed to configure Googl
 
 If you don't want to run the tutorial in Cloud Shell, you can view the md file [here](https://github.com/vszal/pop-kustomize/blob/main/tutorial.md).
 
+Notes: 
+
+To view the security insight panel inside of Cloud Deploy, You might need to alter the permissions of the service account
+-Artifact Registry Reader
+-Container Analysis Occurrences Viewer
+-Service Usage Consumer
+
 ## About the Sample app - Population stats
 
 Simple web app that pulls population data based on U.S. address queries. Note, other countries are currently not supported.
