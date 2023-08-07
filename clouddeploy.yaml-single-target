@@ -1,5 +1,5 @@
 # replace "project-id-here" in the three targets below with your actual project(s)
-# Supports two single targets (Test and Stage) and one multi-target (Prod)
+# Supports three targets - Test, Stage, and Prod
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
@@ -56,38 +56,8 @@ apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
   name: prod
-description: prod multi-target
-requireApproval: false
-multiTarget:
-   targetIds: [prod-us-east, prod-us-central-prod-us-west]
-
----  
-
-apiVersion: deploy.cloud.google.com/v1
-kind: Target
-metadata:
-  name: prod-us-central
-description: gke cluster in US Central region
+description: prod cluster
 requireApproval: true
 gke:
   cluster: projects/riccardo-blog-test-v1/locations/us-central1/clusters/prodcluster
----  
 
-apiVersion: deploy.cloud.google.com/v1
-kind: Target
-metadata:
-  name: prod-us-east
-description: gke cluster in US East region
-requireApproval: true
-gke:
-  cluster: projects/riccardo-blog-test-v1/locations/us-east1/clusters/prodcluster-useast1
----  
-
-apiVersion: deploy.cloud.google.com/v1
-kind: Target
-metadata:
-  name: prod-us-west
-description: gke cluster in US West region
-requireApproval: true
-gke:
-  cluster: projects/riccardo-blog-test-v1/locations/us-west1/clusters/prodcluster-uswest1

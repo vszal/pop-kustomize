@@ -24,6 +24,9 @@ To view the security insight panel inside of Cloud Deploy, You might need to alt
 -Container Analysis Occurrences Viewer
 -Service Usage Consumer
 
+Next change:
+Introduce multi-target deployment for prod
+
 ## About the Sample app - Population stats
 
 Simple web app that pulls population data based on U.S. address queries. Note, other countries are currently not supported.
@@ -32,4 +35,4 @@ Population data gathered from the U.S. Census Bureau [Population Estimate API](h
 
 Feedback and contributions welcomed!
 
-editied - test of binauthz alert policy 2
+
