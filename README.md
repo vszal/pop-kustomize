@@ -24,7 +24,7 @@ To view the security insight panel inside of Cloud Deploy, You might need to alt
 - Container Analysis Occurrences Viewer
 - Service Usage Consumer
 - Multi-target deployment for prod
-[(https://github.com/nateaveryg/pop-kustomize/blob/main/images/Cloud_Deploy_single-and-multi-cluster.png)]
+!(https://github.com/nateaveryg/pop-kustomize/blob/main/images/Cloud_Deploy_single-and-multi-cluster.png)
 
 
 ## About the Sample app - Population stats
