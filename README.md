@@ -20,12 +20,12 @@ If you don't want to run the tutorial in Cloud Shell, you can view the md file [
 Notes: 
 
 To view the security insight panel inside of Cloud Deploy, You might need to alter the permissions of the service account
--Artifact Registry Reader
--Container Analysis Occurrences Viewer
--Service Usage Consumer
+- Artifact Registry Reader
+- Container Analysis Occurrences Viewer
+- Service Usage Consumer
+- Multi-target deployment for prod
+[(https://github.com/nateaveryg/pop-kustomize/blob/main/images/Cloud_Deploy_single-and-multi-cluster.png)]
 
-Next change:
-Introduce multi-target deployment for prod
 
 ## About the Sample app - Population stats
 
