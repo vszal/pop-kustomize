@@ -8,12 +8,11 @@ description: pop-stats application delivery pipeline with canary
 serialPipeline:
   stages:
   - targetId: test
+
   - targetId: staging
     profiles: [staging]
     strategy:
       canary:
-        predeploy:
-          actions: ["PREDEPLOY-ACTION"]
         runtimeConfig:
           kubernetes:
             serviceNetworking:
@@ -21,7 +20,9 @@ serialPipeline:
               deployment: "pop-stats"
         canaryDeployment:
           percentages: [0]
-          verify: true       
+          verify: true  
+          predeploy:
+            actions: ["predeploy-action"]     
   - targetId: prod
     profiles: [prod]
 ---

@@ -1,5 +1,8 @@
 apiVersion: skaffold/v4beta3
 kind: Config
+
+
+
 metadata:
   name: pop-stats
 build:
@@ -25,13 +28,9 @@ profiles:
     manifests:
       kustomize:
         paths: 
-          - k8s/overlays/test          
+          - k8s/overlays/test 
   - name: staging
-    manifests:
-      kustomize:
-        paths: 
-          - k8s/overlays/staging
-    #Pre-deployment hook example
+  
     customActions:
     - name: predeploy-action
       containers:
@@ -39,8 +38,12 @@ profiles:
         image: ubuntu
         command: ["/bin/sh"]
         args: ["-c", 'echo "this is a predeploy action"' ]
-      executionMode:
-        kubernetesCluster: {}      
+
+    manifests:
+      kustomize:
+        paths: 
+          - k8s/overlays/staging
+     
     verify:
     #Call Healthcheck on Staging Target URL       
     - name: staging-healthcheck
