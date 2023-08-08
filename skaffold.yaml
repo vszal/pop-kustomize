@@ -31,6 +31,16 @@ profiles:
       kustomize:
         paths: 
           - k8s/overlays/staging
+    #Pre-deployment hook example
+    customActions:
+    - name: predeploy-action
+      containers:
+      - name: predeploy-echo
+        image: ubuntu
+        command: ["/bin/sh"]
+        args: ["-c", 'echo "this is a predeploy action"' ]
+      executionMode:
+        kubernetesCluster: {}      
     verify:
     #Call Healthcheck on Staging Target URL       
     - name: staging-healthcheck

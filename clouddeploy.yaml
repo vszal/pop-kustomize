@@ -12,6 +12,8 @@ serialPipeline:
     profiles: [staging]
     strategy:
       canary:
+        predeploy:
+          actions: ["PREDEPLOY-ACTION"]
         runtimeConfig:
           kubernetes:
             serviceNetworking:
