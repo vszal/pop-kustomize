@@ -36,7 +36,7 @@ steps:
 
         gcloud deploy releases create release-$(date +'%Y%m%d%H%M%S') \
           --region us-central1 \
-          --delivery-pipeline=pop-stats-pipeline \
+          --delivery-pipeline=pop-stats-multitarget \
           --annotations=commitId=${REVISION_ID},gitlink=https://github.com/nateaveryg/pop-kustomize/commit/${COMMIT_SHA} \
           --images=pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}@$(cat digest)
         
