@@ -10,28 +10,9 @@ serialPipeline:
   - targetId: test
   - targetId: staging
     profiles: [staging]
-    strategy:
-      canary:
-        runtimeConfig:
-          kubernetes:
-            serviceNetworking:
-              service: "pop-stats"
-              deployment: "pop-stats"
-        canaryDeployment:
-          percentages: [0]
-          verify: true  
   - targetId: prod
     profiles: [prod]
-    strategy:
-      canary:
-        runtimeConfig:
-          kubernetes:
-            serviceNetworking:
-             service: "pop-stats"
-             deployment: "pop-stats"
-        canaryDeployment:
-          percentages: [25,50]
-          verify: true  
+
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -57,9 +38,8 @@ kind: Target
 metadata:
   name: prod
 description: prod multi-target
-requireApproval: false
 multiTarget:
-   targetIds: [prod-us-east, prod-us-central-prod-us-west]
+   targetIds: [ prod-us-east, prod-us-central-prod-us-west ]
 
 ---  
 
@@ -68,7 +48,6 @@ kind: Target
 metadata:
   name: prod-us-central
 description: gke cluster in US Central region
-requireApproval: true
 gke:
   cluster: projects/riccardo-blog-test-v1/locations/us-central1/clusters/prodcluster
 ---  

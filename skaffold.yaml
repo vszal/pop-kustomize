@@ -1,61 +1,7 @@
-apiVersion: skaffold/v3alpha1
+apiVersion: skaffold/v4beta1
 kind: Config
-metadata:
-  name: pop-stats
-build:
-# Uncomment if you're using minikube for loca dev and don't want to push to Artifact Registry
-#  local: 
-#    push: false
-  artifacts:
-  - image: pop-stats
-    context: app
-    docker:
-      dockerfile: Dockerfile
 manifests:
-  kustomize:
-    paths:
-      - k8s/overlays/dev
-portForward:
-- resourceType: deployment
-  resourceName: pop-stats
-  port: 8080
-  localPort: 8080
-profiles:
-  - name: test
-    manifests:
-      kustomize:
-        paths: 
-          - k8s/overlays/test          
-  - name: staging
-    manifests:
-      kustomize:
-        paths: 
-          - k8s/overlays/staging
-    verify:
-    #Call Healthcheck on Staging Target URL       
-    - name: staging-healthcheck
-      container:
-        name: alpine
-        image: alpine
-        command: ["bin/sh"]
-        args: ["-c", "wget http://34.71.242.3:8080/h"]          
-  - name: prod
-    manifests:
-      kustomize:
-        paths: 
-          - k8s/overlays/prod
-#    verify:
-    #Call Healthcheck on Prod Target URL       
-#    - name: pro-healthcheck
-#      container:
-#        name: alpine-health
-#        image: alpine
-#        command: ["bin/sh"]
-#        args: ["-c", "wget http://104.154.222.255:8080/h"]
-    #Call Loadgen on Prod Target URL     
-#    - name: prod-loadgen
-#      container:
-#        name: alpine-load
-#        image: alpine
-#        command: ["bin/sh"]
-#        args: ["-c", "wget http://104.154.222.255:8080/load"]
+  rawYaml:
+  - application.yaml
+deploy:
+  kubectl: {}

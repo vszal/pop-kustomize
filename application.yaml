@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pop-stats
+  labels:
+    app: pop-stats
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pop-stats
+  template:
+    metadata:
+      labels:
+        app: pop-stats
+    spec:
+      containers:
+      - name: pop-stats
+        image: us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
+portForward:
+- resourceType: deployment
+  resourceName: pop-stats
+  port: 8080
+  localPort: 8080
