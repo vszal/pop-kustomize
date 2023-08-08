@@ -3,16 +3,25 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
-  name: pop-stats-pipeline
+  name: pop-stats-multitarget
 description: pop-stats application delivery pipeline with canary
 serialPipeline:
   stages:
   - targetId: test
   - targetId: staging
     profiles: [staging]
+    strategy:
+      canary:
+        runtimeConfig:
+          kubernetes:
+            serviceNetworking:
+              service: "pop-stats"
+              deployment: "pop-stats"
+        canaryDeployment:
+          percentages: [0]
+          verify: false       
   - targetId: prod
     profiles: [prod]
-
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -39,8 +48,7 @@ metadata:
   name: prod
 description: prod multi-target
 multiTarget:
-   targetIds: [ prod-us-east, prod-us-central-prod-us-west ]
-
+   targetIds: [ prod-us-east, prod-us-central, prod-us-west ]
 ---  
 
 apiVersion: deploy.cloud.google.com/v1
