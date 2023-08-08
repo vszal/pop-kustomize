@@ -1,4 +1,4 @@
-apiVersion: skaffold/v3alpha1
+apiVersion: skaffold/v4beta3
 kind: Config
 metadata:
   name: pop-stats
@@ -34,7 +34,7 @@ profiles:
     #Pre-deployment hook example
     customActions:
     - name: predeploy-action
-      container:
+      containers:
       - name: predeploy-echo
         image: ubuntu
         command: ["/bin/sh"]
