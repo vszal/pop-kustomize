@@ -24,11 +24,14 @@ To view the security insight panel inside of Cloud Deploy, You might need to alt
 - Container Analysis Occurrences Viewer
 - Service Usage Consumer
 
-Cloud Deploy Features:
+## Cloud Deploy Features:
 
 - Approvals
+- Canary
+- Verification
 - Multiple Stages
 - Promotions between stages
+- Security Insights panel
 - Multi-target deployment for prod
 
 ![Deployment Targets](https://github.com/nateaveryg/pop-kustomize/blob/main/images/Cloud_Deploy_single-and-multi-cluster.png)
