@@ -34,7 +34,7 @@ profiles:
     #Pre-deployment hook example
     customActions:
     - name: predeploy-action
-      containers:
+      container:
       - name: predeploy-echo
         image: ubuntu
         command: ["/bin/sh"]
