@@ -29,6 +29,7 @@ To view the security insight panel inside of Cloud Deploy, You might need to alt
 - Approvals
 - Canary
 - Verification
+- Pre-deployment Hook
 - Multiple Stages
 - Promotions between stages
 - Security Insights panel
