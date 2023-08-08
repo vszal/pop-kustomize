@@ -23,6 +23,12 @@ To view the security insight panel inside of Cloud Deploy, You might need to alt
 - Artifact Registry Reader
 - Container Analysis Occurrences Viewer
 - Service Usage Consumer
+
+Cloud Deploy Features:
+
+- Approvals
+- Multiple Stages
+- Promotions between stages
 - Multi-target deployment for prod
 
 ![Deployment Targets](https://github.com/nateaveryg/pop-kustomize/blob/main/images/Cloud_Deploy_single-and-multi-cluster.png)
