@@ -1,6 +1,11 @@
 # Overview: build and create a release via Google Cloud Deploy for GKE
 # NOTE: currently requires SCM triggering due to dependency on the COMMIT_SHA variable
 steps:
+  # Install dependencies
+  - id: Install python dependencies
+    name: python
+    entrypoint: pip
+    args: ["install", "-r", "requirements.txt", "--user"] 
   # Build and tag using commit sha
   - id: build
     name: 'gcr.io/cloud-builders/docker'
