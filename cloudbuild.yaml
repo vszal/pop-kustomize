@@ -5,7 +5,7 @@ steps:
   - id: Install python dependencies
     name: python
     entrypoint: pip
-    args: ["install", "-i", "https://us-central1-python.pkg.dev/riccardo-blog-test-v1/python-local/", "-r", "requirements.txt", "--user"]
+    args: ["install", "-i", "https://us-central1-python.pkg.dev/riccardo-blog-test-v1/python-local", "-r", "requirements.txt", "--user"]
     dir: 'app' 
   # Build and tag using commit sha
   - id: build
