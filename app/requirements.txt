@@ -9,7 +9,7 @@ gunicorn==21.2.0
 # cpu-load-generator>=1.2.0
 
 # Attempt to specify exact repo from which to pull flask
-flask==2.3.2
-gunicorn==21.2.0
+# flask==2.3.2
+# gunicorn==21.2.0
 # https://us-central1-python.pkg.dev/riccardo-blog-test-v1/python-local/Flask-2.3.2-py3-none-any.whl
 # end flask exp.
