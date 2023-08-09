@@ -1,12 +1,23 @@
 # Overview: build and create a release via Google Cloud Deploy for GKE
 # NOTE: currently requires SCM triggering due to dependency on the COMMIT_SHA variable
 steps:
-  # Install dependencies
   - id: Install python dependencies
-    name: python
-    entrypoint: pip
-    args: ['install', '-i', 'us-central1-docker.pkg.dev/$PROJECT_ID/python-local', '-r', 'requirements.txt', '--user']
-    dir: 'app' 
+    name: python:3.9
+    entrypoint: /bin/bash
+    dir: package
+    args:
+      - -c
+      - |
+        pip install --upgrade pip setuptools twine wheel
+        pip install keyring
+        pip install keyrings.google-artifactregistry-auth
+        pip install -i https://us-central1-docker.pkg.dev/$PROJECT_ID/python-local -r /app/requirements.txt
+  # Install dependencies
+  #- id: Install python dependencies
+  #  name: python
+  #  entrypoint: pip
+  #  args: ['install', '-i', 'us-central1-docker.pkg.dev/$PROJECT_ID/python-local', '-r', 'requirements.txt', '--user']
+  #  dir: 'app' 
   # Build and tag using commit sha
   - id: build
     name: 'gcr.io/cloud-builders/docker'
