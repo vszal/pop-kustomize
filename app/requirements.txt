@@ -1,6 +1,6 @@
 # package>=version
 requests>=2.25.0
---extra-index-url https://us-central1-python.pkg.dev/riccardo-blog-test-v1/python-remote
+--extra-index-url https://us-central1-python.pkg.dev/riccardo-blog-test-v1/python-virtual
 flask==2.3.2
 gunicorn==21.2.0
 cpu-load-generator==1.2.0
