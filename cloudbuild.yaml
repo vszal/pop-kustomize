@@ -5,7 +5,8 @@ steps:
   - id: Install python dependencies
     name: python
     entrypoint: pip
-    args: ["install", "-r", "requirements.txt", "--user"] 
+    args: ["install", "-r", "requirements.txt", "--user"]
+    dir: 'app' 
   # Build and tag using commit sha
   - id: build
     name: 'gcr.io/cloud-builders/docker'
