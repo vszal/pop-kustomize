@@ -22,7 +22,8 @@ steps:
   #  dir: 'app' 
   # Build and tag using commit sha
   - id: build
-    name: 'gcr.io/cloud-builders/docker'
+    # name: 'gcr.io/cloud-builders/docker'
+    name: python:3.9
     args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
     dir: 'app'
   # Run api tests
