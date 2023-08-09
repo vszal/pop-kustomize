@@ -11,6 +11,7 @@ steps:
         pip install --upgrade pip setuptools twine wheel
         pip install keyring
         pip install keyrings.google-artifactregistry-auth
+        echo ####### pull required files for the app ########
         pip install -i https://us-central1-docker.pkg.dev/$PROJECT_ID/python-local -r ../app/requirements.txt
   # Install dependencies
   #- id: Install python dependencies
