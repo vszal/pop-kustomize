@@ -24,6 +24,22 @@ To view the security insight panel inside of Cloud Deploy, You might need to alt
 - Container Analysis Occurrences Viewer
 - Service Usage Consumer
 
+## Cloud Build Features:
+- Cloud Repositories 2nd Gen
+- Security Insights Panel
+- SLSA
+
+## Artifact Registry
+- Docker Registry
+- local python repo
+- remote python repo
+- virtual python repo
+
+## Artifact Analysis
+- Scan on push
+- OS level vuln scans
+- python package vuln scans
+
 ## Cloud Deploy Features:
 
 - Approvals
