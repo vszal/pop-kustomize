@@ -11,7 +11,7 @@ steps:
         pip install --upgrade pip setuptools twine wheel
         pip install keyring
         pip install keyrings.google-artifactregistry-auth
-        keyring —- list-backends
+        keyring —-list-backends
         echo ####### pull required files for the app ########
         pip install -r ../app/requirements.txt
   # Install dependencies
