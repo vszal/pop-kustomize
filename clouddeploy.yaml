@@ -18,6 +18,7 @@ serialPipeline:
             serviceNetworking:
               service: "pop-stats"
               deployment: "pop-stats"
+              disablePodOverprovisioning: true
         canaryDeployment:
           percentages: [0]
           verify: true  
