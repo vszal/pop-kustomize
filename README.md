@@ -28,6 +28,7 @@ To view the security insight panel inside of Cloud Deploy, You might need to alt
 - Cloud Repositories 2nd Gen
 - Security Insights Panel
 - SLSA build provenance
+- Git checks
 
 ## Artifact Registry
 - Docker Registry
