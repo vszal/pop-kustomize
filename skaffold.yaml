@@ -36,7 +36,7 @@ profiles:
     - name: predeploy-action
       containers:
       - name: tf-plan
-        image: us-central1-docker.pkg.dev/riccardo-blog-test-v1/pop-stats/pop-stats:latest
+        image: hashicorp/terraform:1.0.0
         command: ["/bin/sh"]
         args: ["-c", '../terraform-ex/tfplan-ex.bat' ]
 
