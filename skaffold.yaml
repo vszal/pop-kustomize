@@ -36,9 +36,9 @@ profiles:
     - name: predeploy-action
       containers:
       - name: tf-plan
-        image: us-central1-docker.pkg.dev/riccardo-blog-test-v1/pop-stats/pop-stats
+        image: us-central1-docker.pkg.dev/riccardo-blog-test-v1/pop-stats/pop-stats:latest
         command: ["/bin/sh"]
-        args: ["-c", '../teraform/tfplan-ex.bat' ]
+        args: ["-c", '../terraform-ex/tfplan-ex.bat' ]
 
     manifests:
       kustomize:
