@@ -31,14 +31,13 @@ profiles:
           - k8s/overlays/test 
   - name: staging
 
-    # Calling pre-deploy hook that calls terraform
     customActions:
     - name: predeploy-action
       containers:
-      - name: tf-plan
-        image: us-central1-docker.pkg.dev/riccardo-blog-test-v1/pop-stats/pop-stats
+      - name: predeploy-echo
+        image: ubuntu
         command: ["/bin/sh"]
-        args: ["-c", '../teraform/tfplan-ex.bat' ]
+        args: ["-c", 'echo "this is a predeploy action"' ]
 
     manifests:
       kustomize:
