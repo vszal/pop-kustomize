@@ -39,6 +39,8 @@ profiles:
         image: hashicorp/terraform:1.0.0
         command: ["/bin/sh"]
         args: ["-c", '../terraform-ex/tfplan-ex.bat' ]
+      executionMode:
+         kubernetesCluster: {}
 
     manifests:
       kustomize:
