@@ -85,7 +85,7 @@ gke:
 apiVersion: deploy.cloud.google.com/v1
 kind: Automation
 metadata:
-  name: my-automation-demo-app-1/promote
+  name: pop-stats-multitarget/promote
 description: promotes a release
 suspended: false
 serviceAccount: 105792947502-compute@developer.gserviceaccount.com
