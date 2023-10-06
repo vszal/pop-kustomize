@@ -81,3 +81,19 @@ metadata:
 description: gke cluster in US West region
 gke:
   cluster: projects/riccardo-blog-test-v1/locations/us-west1/clusters/prodcluster-uswest1
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Automation
+metadata:
+  name: my-automation-demo-app-1/promote
+description: promotes a release
+suspended: false
+serviceAccount: 105792947502-compute@developer.gserviceaccount.com
+selector:
+- target:
+    id: test
+rules:
+- promoteRelease:
+    name: "promote-release"
+    wait: 1m
+    toTargetId: "@next"
