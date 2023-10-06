@@ -87,7 +87,6 @@ kind: Automation
 metadata:
   name: pop-stats-multitarget/promote
 description: promotes a release
-suspended: false
 serviceAccount: 105792947502-compute@developer.gserviceaccount.com
 selector:
 - target:
