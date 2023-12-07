@@ -1,4 +1,4 @@
-apiVersion: skaffold/v4beta5
+apiVersion: skaffold/v3alpha1
 kind: Config
 
 
@@ -31,13 +31,16 @@ profiles:
           - k8s/overlays/test 
   - name: staging
 
+    # Calling pre-deploy hook that calls terraform
     customActions:
     - name: predeploy-action
       containers:
-      - name: predeploy-echo
-        image: ubuntu
+      - name: tf-plan
+        image: hashicorp/terraform:1.0.0
         command: ["/bin/sh"]
-        args: ["-c", 'echo "this is a predeploy action"' ]
+        args: ["-c", '../terraform-ex/tfplan-ex.bat' ]
+      executionMode:
+         kubernetesCluster: {}
 
     manifests:
       kustomize:
